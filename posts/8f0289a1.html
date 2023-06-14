@@ -6,8 +6,8 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://reiner.host">
-  <link rel="canonical" href="https://reiner.host/tags/tcp半包/"/>
-  <title>Tag: TCP半包 | 夏尔の个人博客</title>
+  <link rel="canonical" href="https://reiner.host/posts/8f0289a1.html"/>
+  <title>Implementing AI customer service based on Langchain | 夏尔の个人博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
@@ -17,13 +17,17 @@
   <meta name="msvalidate.01" content="2A23871076C32D9FEA46BE743DA8711C" />
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="夏尔の个人博客">
-<meta property="og:url" content="https://reiner.host/tags/TCP%E5%8D%8A%E5%8C%85/index.html">
+  <meta name="description" content="Based Langchain  llama_index &gt;&#x3D;0.6.5  GPT-3.5  websockets  python &gt;&#x3D;3.10   dependence 1234567891011pip install llama-indexpip install openai pip install langchainpip install websocketspip instal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Implementing AI customer service based on Langchain">
+<meta property="og:url" content="https://reiner.host/posts/8f0289a1.html">
 <meta property="og:site_name" content="夏尔の个人博客">
+<meta property="og:description" content="Based Langchain  llama_index &gt;&#x3D;0.6.5  GPT-3.5  websockets  python &gt;&#x3D;3.10   dependence 1234567891011pip install llama-indexpip install openai pip install langchainpip install websocketspip instal">
 <meta property="og:locale">
+<meta property="article:published_time" content="2023-06-14T12:04:22.000Z">
+<meta property="article:modified_time" content="2023-06-14T14:49:13.401Z">
 <meta property="article:author" content="reiner">
-<meta property="article:tag" content="JAVA BLOGS WEB开发 AIGC">
+<meta property="article:tag" content="-- AI -- ChatGPT -- AI智能客服 ">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="夏尔の个人博客" type="application/atom+xml">
@@ -285,162 +289,282 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ImplementingAICustomerServiceBasedOnLangchain" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/posts/d0c795f9.html" class="archive-article-date">
-        <time datetime="2021-06-11T07:28:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-11</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/posts/d0c795f9.html" target="_blank">解决使用netty作为TCP服务端时设备接收消息连包问题</a>
   
+    <h1 class="article-title" itemprop="name">
+      Implementing AI customer service based on Langchain
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/posts/8f0289a1.html" class="archive-article-date">
+        <time datetime="2023-06-14T12:04:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-14</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.7k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">10分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1><span id="based">Based</span></h1><ul>
+<li><p>Langchain</p>
+</li>
+<li><p>llama_index &gt;=0.6.5</p>
+</li>
+<li><p>GPT-3.5</p>
+</li>
+<li><p>websockets</p>
+</li>
+<li><p>python &gt;=3.10</p>
+</li>
+</ul>
+<p><strong>dependence</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pip install llama-index</span><br><span class="line"></span><br><span class="line">pip install openai </span><br><span class="line"></span><br><span class="line">pip install langchain</span><br><span class="line"></span><br><span class="line">pip install websockets</span><br><span class="line"></span><br><span class="line">pip install pandas</span><br><span class="line"></span><br><span class="line">pip install llama-hub</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1><span id="what-use">What use</span></h1><p>Supporting private knowledge base AI question-answering chatbot, capable of both knowledge-based Q&amp;A and casual conversation.</p>
+<span id="more"></span>
+
+<h1><span id="ai-chatbot">AI Chatbot</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> llama_index <span class="keyword">import</span> SimpleDirectoryReader, ServiceContext, GPTVectorStoreIndex, PromptHelper,StorageContext,load_index_from_storage</span><br><span class="line"><span class="keyword">from</span> llama_index.llm_predictor.chatgpt <span class="keyword">import</span> ChatGPTLLMPredictor</span><br><span class="line"><span class="keyword">from</span> langchain.chat_models <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> langchain.callbacks.streaming_stdout <span class="keyword">import</span> StreamingStdOutCallbackHandler</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> llama_index.langchain_helpers.agents <span class="keyword">import</span> IndexToolConfig, LlamaIndexTool,LlamaToolkit</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> llama_index.langchain_helpers.agents <span class="keyword">import</span> create_llama_chat_agent,create_llama_agent</span><br><span class="line"><span class="keyword">from</span> llama_index.langchain_helpers.memory_wrapper <span class="keyword">import</span> GPTIndexChatMemory</span><br><span class="line">os.environ[<span class="string">&quot;OPENAI_API_KEY&quot;</span>] = <span class="string">&#x27;sk-yourOpenAiKey&#x27;</span></span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferMemory</span><br><span class="line"><span class="keyword">from</span> llama_index <span class="keyword">import</span> download_loader</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">construct_index</span>(<span class="params">directory_path</span>):</span></span><br><span class="line">    <span class="comment"># set maximum input size</span></span><br><span class="line">    max_input_size = <span class="number">4096</span></span><br><span class="line">    <span class="comment"># set number of output tokens</span></span><br><span class="line">    num_outputs = <span class="number">2000</span></span><br><span class="line">    <span class="comment"># set maximum chunk overlap</span></span><br><span class="line">    max_chunk_overlap = <span class="number">20</span></span><br><span class="line">    <span class="comment"># set chunk size limit</span></span><br><span class="line">    chunk_size_limit = <span class="number">2000</span> </span><br><span class="line">    <span class="comment">#If you don&#x27;t want a stream output,set streaming=False</span></span><br><span class="line">    llm=ChatOpenAI(temperature=<span class="number">0.4</span>, model_name=<span class="string">&quot;gpt-3.5-turbo&quot;</span>, verbose=<span class="literal">True</span>,streaming=<span class="literal">True</span>, callbacks=[StreamingStdOutCallbackHandler()])</span><br><span class="line">    llm_predictor = ChatGPTLLMPredictor(llm=llm)</span><br><span class="line">    prompt_helper = PromptHelper(max_input_size, num_outputs, max_chunk_overlap, chunk_size_limit=chunk_size_limit)</span><br><span class="line"> </span><br><span class="line">    files = os.listdir(directory_path)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(files) &lt; <span class="number">1</span>:</span><br><span class="line">        print(<span class="string">&#x27;error!&#x27;</span>+directory_path+<span class="string">&#x27; 文件夹下文件为空！&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    file_name = files[<span class="number">0</span>]</span><br><span class="line">    print(<span class="string">&quot;load index data :&quot;</span>+directory_path+<span class="string">&#x27;/&#x27;</span>+file_name)</span><br><span class="line">    <span class="comment"># If the data is in Excel format</span></span><br><span class="line">    <span class="keyword">if</span> file_name.endswith(<span class="string">&quot;.xls&quot;</span>) <span class="keyword">or</span> file_name.endswith(<span class="string">&quot;.xlsx&quot;</span>):</span><br><span class="line">        PandasExcelReader = download_loader(<span class="string">&quot;PandasExcelReader&quot;</span>)</span><br><span class="line">        loader = PandasExcelReader()</span><br><span class="line">        loader._pandas_config=&#123;<span class="string">&quot;header&quot;</span>:<span class="number">0</span>&#125;</span><br><span class="line">        <span class="comment">#源码有问题，不设置默认值会报错</span></span><br><span class="line">        <span class="comment">#loader._concat_rows = True</span></span><br><span class="line">        loader._row_joiner = <span class="string">&#x27;   &#x27;</span></span><br><span class="line">        documents = loader.load_data(file=Path(directory_path+<span class="string">&#x27;/&#x27;</span>+file_name),sheet_name=<span class="literal">None</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        documents = SimpleDirectoryReader(directory_path).load_data()</span><br><span class="line">    service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor, prompt_helper=prompt_helper) <span class="comment">#llm_predictor=llm_predictor, </span></span><br><span class="line">    index = GPTVectorStoreIndex.from_documents(documents,service_context=service_context)</span><br><span class="line">    <span class="comment">#save on disk</span></span><br><span class="line">    index.storage_context.persist(<span class="string">&quot;D://storage&quot;</span>)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># rebuild storage context</span></span><br><span class="line">    storage_context = StorageContext.from_defaults(persist_dir=<span class="string">&#x27;D://storage&#x27;</span>)</span><br><span class="line">    <span class="comment"># load index</span></span><br><span class="line">    index = load_index_from_storage(storage_context)</span><br><span class="line">    <span class="comment">#response_mode=&quot;compact&quot;,</span></span><br><span class="line">    query_engine = index.as_query_engine(similarity_top_k=<span class="number">30</span>,service_context=service_context) <span class="comment">#query_engine = index.as_query_engine(similarity_top_k=1,streaming=True,service_context=service_context)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#If you want to save and use the conversation record in document format, you should use GPTindexChatMemory.</span></span><br><span class="line">    <span class="comment"># memory = GPTIndexChatMemory(</span></span><br><span class="line">    <span class="comment">#     index=chat_history_index, </span></span><br><span class="line">    <span class="comment">#     memory_key=&quot;chat_history&quot;, </span></span><br><span class="line">    <span class="comment">#     query_kwargs=&#123;&quot;response_mode&quot;: &quot;compact&quot;,&quot;streaming&quot;:True,&quot;service_context&quot;:service_context,&quot;similarity_top_k&quot;:1&#125;, #,&quot;streaming&quot;:True</span></span><br><span class="line">    <span class="comment">#     # return_source returns source nodes instead of querying index</span></span><br><span class="line">    <span class="comment">#     return_source=True,</span></span><br><span class="line">    <span class="comment">#     # return_messages returns context in message format</span></span><br><span class="line">    <span class="comment">#     return_messages=True,</span></span><br><span class="line">    <span class="comment"># )</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#use memory save the chat history</span></span><br><span class="line">    memory = ConversationBufferMemory(</span><br><span class="line">        memory_key=<span class="string">&quot;chat_history&quot;</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    tool_config = IndexToolConfig(</span><br><span class="line">        query_engine=query_engine, </span><br><span class="line">        name=<span class="string">f&quot;AI Customer service&quot;</span>,</span><br><span class="line">        description=<span class="string">f&quot;If it is a game-related question, please use tools to obtain information before answering.If this question is about a game and you don&#x27;t know the answer, jst say &#x27;sorry,i don&#x27;t know&#x27;&quot;</span>,</span><br><span class="line">        tool_kwargs=&#123;<span class="string">&quot;return_direct&quot;</span>: <span class="literal">True</span>&#125;</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    tool = LlamaIndexTool.from_tool_config(tool_config)</span><br><span class="line">    toolkit = LlamaToolkit(</span><br><span class="line">        index_configs=[tool],</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    agent_chain = create_llama_chat_agent(</span><br><span class="line">        toolkit,</span><br><span class="line">        llm,</span><br><span class="line">        memory=memory,</span><br><span class="line">        verbose=<span class="literal">True</span>,</span><br><span class="line">        agent_kwargs=&#123;<span class="string">&quot;max_iterations&quot;</span>:<span class="number">3</span>&#125;</span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>: </span><br><span class="line">        query = <span class="built_in">input</span>(<span class="string">&quot;What do you want to ask? &quot;</span>)</span><br><span class="line">        print(agent_chain.memory.chat_memory.messages)</span><br><span class="line">        response_stream = agent_chain.run(query)</span><br><span class="line">        <span class="comment">#if use streaming</span></span><br><span class="line">        <span class="keyword">if</span>  <span class="built_in">hasattr</span>(response_stream,<span class="string">&#x27;response_gen&#x27;</span>):</span><br><span class="line">                <span class="keyword">for</span> text <span class="keyword">in</span> response_stream.response_gen:</span><br><span class="line">                    print(text, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">                    <span class="comment">#todo send to client</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(response_stream)</span><br><span class="line">            </span><br><span class="line"><span class="comment">#This path is the file path of your knowledge base</span></span><br><span class="line">service_context=construct_index(<span class="string">&#x27;D://data&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1><span id="integrate-websocket">Integrate WebSocket</span></h1><p>Receive questions from the client and have AI generate answers.</p>
+<h3><span id="websocket-servetpy">websocket servet.py</span></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> llama_index <span class="keyword">import</span> SimpleDirectoryReader, ServiceContext, PromptHelper,StorageContext,load_index_from_storage,GPTVectorStoreIndex</span><br><span class="line"><span class="keyword">from</span> langchain.chat_models <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> CustomCallbackHandler <span class="keyword">import</span> CustomAsyncCallBackHandler</span><br><span class="line"><span class="keyword">from</span> llama_index.llm_predictor.chatgpt <span class="keyword">import</span> ChatGPTLLMPredictor</span><br><span class="line"><span class="keyword">from</span> llama_index.langchain_helpers.agents <span class="keyword">import</span> create_llama_chat_agent</span><br><span class="line"><span class="keyword">from</span> llama_index.langchain_helpers.memory_wrapper <span class="keyword">import</span> GPTIndexChatMemory</span><br><span class="line"><span class="keyword">from</span> llama_index.langchain_helpers.agents <span class="keyword">import</span> IndexToolConfig, LlamaIndexTool,LlamaToolkit</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferMemory</span><br><span class="line"><span class="keyword">from</span> llama_index <span class="keyword">import</span> download_loader</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&quot;OPENAI_API_KEY&quot;</span>] = <span class="string">&#x27;sk-xxx&#x27;</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> websockets</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">logging.basicConfig(stream=sys.stdout, level=logging.INFO)</span><br><span class="line">logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))</span><br><span class="line"></span><br><span class="line">agent_cache=&#123;&#125;</span><br><span class="line">connecte_session = &#123;&#125;</span><br><span class="line">session_cache=&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_llama_chat_agent</span>(<span class="params">directory_path,project_id,session_id,prompt_name,advanced_description</span>):</span></span><br><span class="line">    <span class="keyword">if</span> session_id <span class="keyword">not</span> <span class="keyword">in</span> agent_cache:</span><br><span class="line">        storage_path = <span class="string">&#x27;/data/index_cache/&#x27;</span>+project_id+<span class="string">&#x27;/storage&#x27;</span></span><br><span class="line">        <span class="comment"># set maximum input size</span></span><br><span class="line">        max_input_size = <span class="number">4096</span></span><br><span class="line">        <span class="comment"># set number of output tokens</span></span><br><span class="line">        num_outputs = <span class="number">2000</span></span><br><span class="line">        <span class="comment"># set maximum chunk overlap</span></span><br><span class="line">        max_chunk_overlap = <span class="number">20</span></span><br><span class="line">        <span class="comment"># set chunk size limit</span></span><br><span class="line">        chunk_size_limit = <span class="number">2000</span> </span><br><span class="line"></span><br><span class="line">        llm=ChatOpenAI(temperature=<span class="number">0.4</span>, model_name=<span class="string">&quot;gpt-3.5-turbo&quot;</span>, verbose=<span class="literal">False</span>,streaming=<span class="literal">True</span>)</span><br><span class="line">        llm_predictor = ChatGPTLLMPredictor(llm=llm)</span><br><span class="line">        prompt_helper = PromptHelper(max_input_size, num_outputs, max_chunk_overlap, chunk_size_limit=chunk_size_limit)</span><br><span class="line">    </span><br><span class="line">        </span><br><span class="line">        service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor, prompt_helper=prompt_helper) <span class="comment">#llm_predictor=llm_predictor, </span></span><br><span class="line">        <span class="keyword">if</span> os.path.exists(storage_path):</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># rebuild storage context</span></span><br><span class="line">            storage_context = StorageContext.from_defaults(persist_dir=storage_path)</span><br><span class="line">            <span class="comment"># load index</span></span><br><span class="line">            index = load_index_from_storage(storage_context)</span><br><span class="line"></span><br><span class="line">            agent_cahin= get_chat_agent(index,service_context,llm,prompt_name,advanced_description)</span><br><span class="line">            agent_cache[session_id] = agent_cahin</span><br><span class="line">            <span class="keyword">return</span> agent_cahin</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            files = os.listdir(directory_path)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(files) &lt; <span class="number">1</span>:</span><br><span class="line">                print(<span class="string">&#x27;error!&#x27;</span>+directory_path+<span class="string">&#x27; 文件夹下文件为空！&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            file_name = files[<span class="number">0</span>]</span><br><span class="line">            logging.info(<span class="string">&quot;load data :&quot;</span>+directory_path+<span class="string">&#x27;/&#x27;</span>+file_name)</span><br><span class="line">            <span class="comment"># if excel data format</span></span><br><span class="line">            <span class="keyword">if</span> file_name.endswith(<span class="string">&quot;.xls&quot;</span>) <span class="keyword">or</span> file_name.endswith(<span class="string">&quot;.xlsx&quot;</span>):</span><br><span class="line">                PandasExcelReader = download_loader(<span class="string">&quot;PandasExcelReader&quot;</span>)</span><br><span class="line">                loader = PandasExcelReader()</span><br><span class="line">                loader._pandas_config=&#123;<span class="string">&quot;header&quot;</span>:<span class="number">0</span>&#125;</span><br><span class="line">                <span class="comment">#loader._concat_rows = True</span></span><br><span class="line">                loader._row_joiner = <span class="string">&#x27;   &#x27;</span></span><br><span class="line">                documents = loader.load_data(file=Path(directory_path+<span class="string">&#x27;/&#x27;</span>+file_name),sheet_name=<span class="literal">None</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                documents = SimpleDirectoryReader(directory_path).load_data()</span><br><span class="line">            index = GPTVectorStoreIndex.from_documents(documents,service_context=service_context)</span><br><span class="line">            <span class="comment">#save on disk default ./storage</span></span><br><span class="line">            index.storage_context.persist(storage_path)</span><br><span class="line">            agent_cache[session_id] = get_chat_agent(index,service_context,llm,prompt_name,advanced_description)</span><br><span class="line">            <span class="keyword">return</span> agent_cache[session_id]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> agent_cache[session_id] </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_chat_agent</span>(<span class="params">index,service_context,llm,prompt_name,advanced_description</span>):</span></span><br><span class="line">    <span class="comment"># memory = GPTIndexChatMemory(</span></span><br><span class="line">    <span class="comment">#     index=index, </span></span><br><span class="line">    <span class="comment">#     memory_key=&quot;chat_history&quot;, </span></span><br><span class="line">    <span class="comment">#     query_kwargs=&#123;&quot;response_mode&quot;: &quot;compact&quot;,&quot;streaming&quot;:True,&quot;service_context&quot;:service_context,&quot;similarity_top_k&quot;:1&#125;, #,&quot;streaming&quot;:True</span></span><br><span class="line">    <span class="comment">#     # return_source returns source nodes instead of querying index</span></span><br><span class="line">    <span class="comment">#     return_source=True,</span></span><br><span class="line">    <span class="comment">#     # return_messages returns context in message format</span></span><br><span class="line">    <span class="comment">#     return_messages=True,</span></span><br><span class="line">    <span class="comment">#     #chat_memory=ConversationBufferWindowMemory(return_messages=True)</span></span><br><span class="line">    <span class="comment"># )</span></span><br><span class="line">    <span class="comment">#should be create memorys for each user</span></span><br><span class="line">    memory = ConversationBufferMemory(</span><br><span class="line">        memory_key=<span class="string">&quot;chat_history&quot;</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    prompt_name=prompt_name <span class="keyword">if</span> prompt_name <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="string">f&quot;AI virtual anchor&quot;</span></span><br><span class="line">    advanced_description = advanced_description <span class="keyword">if</span> advanced_description <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="string">f&quot;You are an AI virtual anchor. If it is a game-related question, please use tools to obtain information before answering.If this question is about a game and you don&#x27;t know the answer, jst say &#x27;sorry,i don&#x27;t know&#x27;. Remember must respond in Chinese.&quot;</span></span><br><span class="line">    print(<span class="string">&#x27;prompt name:&#x27;</span>+prompt_name+<span class="string">&quot; ,description:&quot;</span>+advanced_description)</span><br><span class="line">    tool_config = IndexToolConfig(</span><br><span class="line">        query_engine=index.as_query_engine(</span><br><span class="line">                response_mode=<span class="string">&quot;compact&quot;</span>,</span><br><span class="line">                streaming=<span class="literal">True</span>,</span><br><span class="line">                similarity_top_k=<span class="number">1</span>,service_context=service_context), </span><br><span class="line">        name=prompt_name,</span><br><span class="line">        description=advanced_description,</span><br><span class="line">        tool_kwargs=&#123;<span class="string">&quot;return_direct&quot;</span>: <span class="literal">True</span>,<span class="string">&quot;return_sources&quot;</span>: <span class="literal">True</span>&#125;,</span><br><span class="line">        return_sources= <span class="literal">True</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    tool = LlamaIndexTool.from_tool_config(tool_config)</span><br><span class="line">    toolkit = LlamaToolkit(</span><br><span class="line">        index_configs=[tool],</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    agent_chain = create_llama_chat_agent(</span><br><span class="line">        toolkit,</span><br><span class="line">        llm,</span><br><span class="line">        memory=memory,</span><br><span class="line">        verbose=<span class="literal">True</span>  </span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> agent_chain</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">send_message</span>(<span class="params">websocket, message_queue</span>):</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        </span><br><span class="line">        message = <span class="keyword">await</span> message_queue.get()</span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">        <span class="keyword">await</span> websocket.send(message)</span><br><span class="line">        <span class="comment"># print(&#x27;Sent message: %s&#x27; % message)</span></span><br><span class="line"></span><br><span class="line">       </span><br><span class="line">        message_queue.task_done()</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">receive_messages</span>(<span class="params">websocket,message_queue,params_json</span>):</span></span><br><span class="line">    <span class="comment"># data path</span></span><br><span class="line">    direct_path = params_json[<span class="string">&#x27;input_dir&#x27;</span>]</span><br><span class="line">    </span><br><span class="line">    project_id=params_json[<span class="string">&quot;project_id&quot;</span>]</span><br><span class="line">    session_id = params_json[<span class="string">&quot;session_id&quot;</span>]</span><br><span class="line"></span><br><span class="line">    connecte_session[<span class="built_in">hash</span>(websocket)]=session_id</span><br><span class="line">    </span><br><span class="line">    chat_agent = build_llama_chat_agent(direct_path,project_id,session_id,<span class="literal">None</span>,<span class="literal">None</span>)</span><br><span class="line">    print(chat_agent.memory.chat_memory.messages)</span><br><span class="line">    query = params_json[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;question&quot;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">            response_stream = <span class="keyword">await</span> chat_agent.arun(</span><br><span class="line">                query,</span><br><span class="line">                callbacks=[CustomAsyncCallBackHandler(message_queue)]</span><br><span class="line">            )</span><br><span class="line">            </span><br><span class="line">            logging.info(<span class="string">&#x27;ai response：&#x27;</span>+response_stream)</span><br><span class="line">    <span class="keyword">except</span> ValueError <span class="keyword">as</span> e:</span><br><span class="line">            response_stream = <span class="built_in">str</span>(e)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> response_stream.startswith(<span class="string">&quot;Could not parse LLM output: `&quot;</span>):</span><br><span class="line">                <span class="keyword">raise</span> e</span><br><span class="line">            response_stream = response_stream.removeprefix(<span class="string">&quot;Could not parse LLM output: `&quot;</span>).removesuffix(<span class="string">&quot;`&quot;</span>)</span><br><span class="line">            logging.error(<span class="string">&quot;error ：&quot;</span>+response_stream)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> websockets</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义websocket服务器回调函数</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">websocket_server</span>(<span class="params">websocket, path</span>):</span></span><br><span class="line">    <span class="keyword">global</span> count</span><br><span class="line">    print(<span class="string">&#x27;Client connected.&#x27;</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 创建消息队列</span></span><br><span class="line">        message_queue = asyncio.Queue()</span><br><span class="line">        <span class="comment"># 启动发送消息和接收消息的协程</span></span><br><span class="line">        send_task = asyncio.create_task(send_message(websocket, message_queue))</span><br><span class="line">        <span class="comment"># 接收客户端发送的消息</span></span><br><span class="line">        <span class="keyword">async</span> <span class="keyword">for</span> message <span class="keyword">in</span> websocket:</span><br><span class="line">            print(<span class="string">&#x27;Received message: %s&#x27;</span> % message)</span><br><span class="line">            data = json.loads(message)</span><br><span class="line">            <span class="keyword">await</span> receive_messages(websocket,message_queue,data)</span><br><span class="line">    <span class="keyword">except</span> websockets.exceptions.ConnectionClosed:</span><br><span class="line">        <span class="comment">#根据websocket对象获取session_id</span></span><br><span class="line">        session_id = connecte_session[<span class="built_in">hash</span>(websocket)]</span><br><span class="line">        <span class="comment">#根据session_id删除缓存的代理对象</span></span><br><span class="line">        <span class="keyword">del</span> agent_cache[session_id]</span><br><span class="line">        print(<span class="string">&#x27;Client : %s disconnected.&#x27;</span> % session_id)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="comment"># 关闭websocket连接</span></span><br><span class="line">        <span class="keyword">await</span> websocket.close()</span><br><span class="line">        <span class="comment">#connected.remove(websocket)</span></span><br><span class="line">        <span class="comment"># 取消发送消息和接收消息的协程</span></span><br><span class="line">        send_task.cancel()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 等待所有任务和协程完成</span></span><br><span class="line">        <span class="keyword">await</span> asyncio.gather(send_task, return_exceptions=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 启动websocket服务器</span></span><br><span class="line">    start_server = websockets.serve(websocket_server, <span class="string">&#x27;0.0.0.0&#x27;</span>, <span class="number">9961</span>)</span><br><span class="line">    print(<span class="string">&#x27;websocket_server now started listening on port: 9961&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 运行事件循环</span></span><br><span class="line">    asyncio.get_event_loop().run_until_complete(start_server)</span><br><span class="line">    asyncio.get_event_loop().run_forever()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3><span id="custom-callback-handlerpy">custom callback handler.py</span></h3><p>Return AI’s response to the WebSocket client</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Any, Union</span><br><span class="line"><span class="keyword">from</span> asyncio.queues <span class="keyword">import</span> Queue</span><br><span class="line"><span class="keyword">from</span> langchain.callbacks.base <span class="keyword">import</span> AsyncCallbackHandler</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Any, Dict, List, Optional</span><br><span class="line"><span class="keyword">from</span> langchain.schema <span class="keyword">import</span> LLMResult</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> langchain.callbacks.streaming_stdout_final_only <span class="keyword">import</span> FinalStreamingStdOutCallbackHandler</span><br><span class="line">DEFAULT_ANSWER_PREFIX_TOKENS = [<span class="string">&quot;\n&quot;</span>, <span class="string">&quot;AI&quot;</span>, <span class="string">&quot;:&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomAsyncCallBackHandler</span>(<span class="params">AsyncCallbackHandler</span>):</span></span><br><span class="line">    queue: Queue</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,queue:Queue, answer_prefix_tokens: Optional[List[<span class="built_in">str</span>]] = <span class="literal">None</span></span>) -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="keyword">if</span> answer_prefix_tokens <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            answer_prefix_tokens = DEFAULT_ANSWER_PREFIX_TOKENS</span><br><span class="line">        self.answer_prefix_tokens = answer_prefix_tokens</span><br><span class="line">        self.last_tokens = [<span class="string">&quot;&quot;</span>] * <span class="built_in">len</span>(answer_prefix_tokens)</span><br><span class="line">        self.answer_reached = <span class="literal">False</span></span><br><span class="line">        self.queue=queue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">put_message</span>(<span class="params">self,json_str</span>):</span></span><br><span class="line">        <span class="keyword">await</span> self.queue.put(json.dumps(json_str))</span><br><span class="line">        <span class="keyword">await</span> self.queue.join()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">on_llm_start</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        self, serialized: Dict[<span class="built_in">str</span>, Any], prompts: List[<span class="built_in">str</span>], **kwargs: Any</span></span></span><br><span class="line"><span class="function"><span class="params">    </span>) -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;Run when LLM starts running.&quot;&quot;&quot;</span></span><br><span class="line">        self.answer_reached = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">on_llm_new_token</span>(<span class="params">self, token: <span class="built_in">str</span>, **kwargs</span>) -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">         <span class="comment"># Remember the last n tokens, where n = len(answer_prefix_tokens)</span></span><br><span class="line">        self.last_tokens.append(token)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(self.last_tokens) &gt; <span class="built_in">len</span>(self.answer_prefix_tokens):</span><br><span class="line">            self.last_tokens.pop(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Check if the last n tokens match the answer_prefix_tokens list ...</span></span><br><span class="line">        <span class="keyword">if</span> self.last_tokens == self.answer_prefix_tokens:</span><br><span class="line">            self.answer_reached = <span class="literal">True</span></span><br><span class="line">            <span class="comment"># Do not print the last token in answer_prefix_tokens,</span></span><br><span class="line">            <span class="comment"># as it&#x27;s not part of the answer yet</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># ... if yes, then print tokens from now on</span></span><br><span class="line">        <span class="keyword">if</span> self.answer_reached:</span><br><span class="line">            response = <span class="built_in">str</span>(token)</span><br><span class="line">            <span class="keyword">await</span> self.put_message(response)</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">on_llm_end</span>(<span class="params">self, response: LLMResult, **kwargs: Any</span>) -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;Run when LLM ends running.&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.answer_reached:</span><br><span class="line">            response = <span class="string">&quot;[DONE]&quot;</span></span><br><span class="line">            <span class="keyword">await</span> self.put_message(response)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">on_llm_error</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">        self, error: Union[Exception, KeyboardInterrupt], **kwargs: Any</span></span></span><br><span class="line"><span class="function"><span class="params">    </span>) -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;Run when LLM errors.&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          reiner
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://reiner.host/posts/8f0289a1.html" title="Implementing AI customer service based on Langchain" target="_blank">https://reiner.host/posts/8f0289a1.html</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          转载请注明出处，并附上原文链接
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">netty</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TCP服务端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TCP粘包</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TCP半包</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">16进制通信</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">-- AI -- ChatGPT -- AI智能客服 </a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/JAVA//" class="article-tag-list-link color5">JAVA</a>
+        			<a href="/categories/AI//" class="article-tag-list-link color3">AI</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://reiner.host/posts/8f0289a1.html" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/posts/94ca3821.html" class="archive-article-date">
-        <time datetime="2021-03-22T02:55:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-22</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/posts/8f0289a0.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用llama_index实现chatGPT智能问答机器人</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/posts/94ca3821.html" target="_blank">使用netty作为TCP服务端并使用16进制与硬件进行通信</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">netty</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TCP服务端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TCP粘包</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TCP半包</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">16进制通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JAVA//" class="article-tag-list-link color5">JAVA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Based</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">What use</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">AI Chatbot</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">Integrate WebSocket</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">4.0.1.</span> <span class="toc-text">websocket servet.py</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">4.0.2.</span> <span class="toc-text">custom callback handler.py</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
   
+  <div id="gitment-ctn"></div>
   
-    </div></section>
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
+  
+  <script>
+    <!-- id: "Implementing AI customer service based on Langchain" -->
+    var gitment = new Gitment({
+      id: "20230614200422",
+      owner: 'reinershir',
+      repo: 'reinershir.github.io',
+      oauth: {
+        client_id: 'f3849a4d7ee918d7da99',
+        client_secret: 'd2f2e0b00608238f5cfbb62e016fc0be1f4a70fc',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
   
 
-    
 
 
           </div>
@@ -481,9 +605,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

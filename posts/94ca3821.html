@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://reiner.host">
   <link rel="canonical" href="https://reiner.host/posts/94ca3821.html"/>
-  <title>使用netty作为TCP服务端并使用16进制与硬件进行通信 | Reinerの个人博客</title>
+  <title>使用netty作为TCP服务端并使用16进制与硬件进行通信 | 夏尔の个人博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
@@ -21,7 +21,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用netty作为TCP服务端并使用16进制与硬件进行通信">
 <meta property="og:url" content="https://reiner.host/posts/94ca3821.html">
-<meta property="og:site_name" content="Reinerの个人博客">
+<meta property="og:site_name" content="夏尔の个人博客">
 <meta property="og:description" content="说明本文记录了在使用netty作为TCP服务端的情况下，如何解决TCP粘包、半包问题，以及如何使用16进制与客户端进行通信。 依赖首先添加maven依赖： 1234&lt;dependency&gt;    &lt;groupId&gt;io.netty&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;netty-all&lt;&#x2F;artifactId&gt;&lt;&#x2F;de">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-03-22T02:55:33.000Z">
@@ -34,7 +34,7 @@
 <meta property="article:tag" content="16进制通信">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="Reinerの个人博客" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="夏尔の个人博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/img/head.jpg">
@@ -113,9 +113,11 @@
 			
 				<li><a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" >游戏开发</a></li>
 			
-				<li><a href="/categories/%E5%85%B6%E5%AE%83/" >其它笔记</a></li>
-			
 				<li><a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" >数据结构与算法</a></li>
+			
+				<li><a href="/categories/AI/" >AI</a></li>
+			
+				<li><a href="/categories/%E5%85%B6%E5%AE%83/" >其它笔记</a></li>
 			
 				<li><a href="/archives/index.html" >归档</a></li>
 			
@@ -215,6 +217,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -257,21 +261,23 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 12.5%"><a href="/">主页</a></li>
+					<li style="width: 11.11111111111111%"><a href="/">主页</a></li>
 		        
-					<li style="width: 12.5%"><a href="javascript:void(0)/*为保护隐私，请看关于我*/">个人简历</a></li>
+					<li style="width: 11.11111111111111%"><a href="javascript:void(0)/*为保护隐私，请看关于我*/">个人简历</a></li>
 		        
-					<li style="width: 12.5%"><a href="/categories/JAVA/">JAVA</a></li>
+					<li style="width: 11.11111111111111%"><a href="/categories/JAVA/">JAVA</a></li>
 		        
-					<li style="width: 12.5%"><a href="/categories/%E8%BF%90%E7%BB%B4/">运维</a></li>
+					<li style="width: 11.11111111111111%"><a href="/categories/%E8%BF%90%E7%BB%B4/">运维</a></li>
 		        
-					<li style="width: 12.5%"><a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a></li>
+					<li style="width: 11.11111111111111%"><a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a></li>
 		        
-					<li style="width: 12.5%"><a href="/categories/%E5%85%B6%E5%AE%83/">其它笔记</a></li>
+					<li style="width: 11.11111111111111%"><a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li>
 		        
-					<li style="width: 12.5%"><a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li>
+					<li style="width: 11.11111111111111%"><a href="/categories/AI/">AI</a></li>
 		        
-					<li style="width: 12.5%"><a href="/archives/index.html">归档</a></li>
+					<li style="width: 11.11111111111111%"><a href="/categories/%E5%85%B6%E5%AE%83/">其它笔记</a></li>
+		        
+					<li style="width: 11.11111111111111%"><a href="/archives/index.html">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -756,6 +762,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">oculus</a>
               </li>
              
@@ -780,10 +790,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-- 游戏开发 -- C++ -- COCOS2DX</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -800,11 +806,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">TCP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HTTP协议</a>
+                <a href="javascript:void(0)" class="js-tag color2">-- 游戏开发 -- C++ -- COCOS2DX</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -828,6 +830,22 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-- 运维 -- jenkins -- 自动化部署 -- docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">TCP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HTTP协议</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-- AI -- ChatGPT -- 对话机器人 </a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">netty</a>
               </li>
              
@@ -848,7 +866,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-- 运维 -- jenkins -- 自动化部署 -- docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">分表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-- 数据结构 -- 算法 -- modified preorder tree traversal -- 左右值树形</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -865,10 +887,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BUG</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-- 数据结构 -- 算法 -- modified preorder tree traversal -- 左右值树形</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -924,15 +942,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-- AI -- ChatGPT -- 对话机器人 </a>
+                <a href="javascript:void(0)" class="js-tag color3">-- AI -- ChatGPT -- AI智能客服 </a>
               </li>
             
             <div class="clearfix"></div>
@@ -1052,7 +1062,7 @@
     	<section class="tools-section tools-section-me" q-show="aboutme">
         
           
-  	  		<div class="aboutme-wrap" id="aboutme">关于我：<br>8年多Java后端开发架构经验、熟悉spring cloud、电商平台技术架构、微信支付等<br/> 内推机会请联系QQ:MTkyOTY5Njc3MQ== <br/> UpdateDate：2020-12-3</div>
+  	  		<div class="aboutme-wrap" id="aboutme">关于我：多年工作经验，熟悉微高并发服务架构设计与开发，有AI客户机器人开发相关经验。 <br>项目或内推机会请联系QQ(base64解密):MTkyOTY5Njc3MQ== <br/> 或发送邮箱： 1929696771@qq.com <br/>  Update By 2023-6-14</div>
   	  	
     	</section>
     

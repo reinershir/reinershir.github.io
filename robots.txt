@@ -6,3 +6,4 @@ Allow: /categories/
 Allow: /tags/
 
 Sitemap: https://reinershir.github.io/sitemap.xml
+Sitemap: https://reiner.host/sitemap.xml
