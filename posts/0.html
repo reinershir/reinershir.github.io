@@ -6,8 +6,8 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://reiner.host">
-  <link rel="canonical" href="https://reiner.host/posts/100d4ce.html"/>
-  <title>使用Caddy作为HTTP服务器并配置反向代理到本地端口 | 夏尔の个人博客</title>
+  <link rel="canonical" href="https://reiner.host/posts/0.html"/>
+  <title>夏尔の个人博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
@@ -17,17 +17,17 @@
   <meta name="msvalidate.01" content="2A23871076C32D9FEA46BE743DA8711C" />
   
   
-  <meta name="description" content="用途由于服务器上部署了caddy torjan 作为代理服务器，想要配置域名时发现80端口已经被caddy占用，无法使用nginx，干掉80端口代理又无法使用，于是打算直接使用caddy反向代理域名。 配置caddy时走了一些弯路，按照官方文档配置怎么都访问不了，在此记录一下最终解决方案 弯路按照官方文档我找到了caddyFile的位置：&#x2F;etc&#x2F;caddy&#x2F;Caddyfile  接着vi 编辑，">
+  <meta name="description" content="场景  当某些简单的定时任务需要通过后台修改执行时间时，通过spring boot自带的定时任务来实现是个不错的选择。 代码实现创建定时任务类 需要实现SchedulingConfigurer接口 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051@Slf4j@C">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Caddy作为HTTP服务器并配置反向代理到本地端口">
-<meta property="og:url" content="https://reiner.host/posts/100d4ce.html">
+<meta property="og:title" content="夏尔の个人博客">
+<meta property="og:url" content="https://reiner.host/posts/0.html">
 <meta property="og:site_name" content="夏尔の个人博客">
-<meta property="og:description" content="用途由于服务器上部署了caddy torjan 作为代理服务器，想要配置域名时发现80端口已经被caddy占用，无法使用nginx，干掉80端口代理又无法使用，于是打算直接使用caddy反向代理域名。 配置caddy时走了一些弯路，按照官方文档配置怎么都访问不了，在此记录一下最终解决方案 弯路按照官方文档我找到了caddyFile的位置：&#x2F;etc&#x2F;caddy&#x2F;Caddyfile  接着vi 编辑，">
+<meta property="og:description" content="场景  当某些简单的定时任务需要通过后台修改执行时间时，通过spring boot自带的定时任务来实现是个不错的选择。 代码实现创建定时任务类 需要实现SchedulingConfigurer接口 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051@Slf4j@C">
 <meta property="og:locale">
-<meta property="article:published_time" content="2023-07-02T13:59:01.000Z">
-<meta property="article:modified_time" content="2023-08-26T04:09:00.815Z">
+<meta property="article:published_time" content="2024-03-12T04:16:59.833Z">
+<meta property="article:modified_time" content="2024-03-12T03:56:33.311Z">
 <meta property="article:author" content="reiner">
-<meta property="article:tag" content="-- caddy -- 反向代理 -- nginx ">
+<meta property="article:tag" content="JAVA BLOGS WEB开发 AIGC">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="夏尔の个人博客" type="application/atom+xml">
@@ -289,78 +289,16 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-使用Caddy作为HTTP服务器并配置反向代理到本地端口" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-SpringBoot定时任务Scheduled动态修改Cron执行时间" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-  
-  
-    <h1 class="article-title" itemprop="name">
-      使用Caddy作为HTTP服务器并配置反向代理到本地端口
-    </h1>
-  
-
-
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/posts/100d4ce.html" class="archive-article-date">
-        <time datetime="2023-07-02T13:59:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-02</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">500字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
   <div class="article-entry" itemprop="articleBody">
     
-    <h1><span id="用途">用途</span></h1><p>由于服务器上部署了caddy torjan 作为代理服务器，想要配置域名时发现80端口已经被caddy占用，无法使用nginx，干掉80端口代理又无法使用，于是打算直接使用caddy反向代理域名。</p>
-<p>配置caddy时走了一些弯路，按照官方文档配置怎么都访问不了，在此记录一下最终解决方案</p>
-<h1><span id="弯路">弯路</span></h1><p>按照官方文档我找到了caddyFile的位置：<code>/etc/caddy/Caddyfile</code> </p>
-<p>接着vi 编辑，如下配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reiner.host &#123;</span><br><span class="line">    reverse_proxy localhost:8000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <h1><span id="场景">场景</span></h1><p>  当某些简单的定时任务需要通过后台修改执行时间时，通过spring boot自带的定时任务来实现是个不错的选择。</p>
+<h1><span id="代码实现">代码实现</span></h1><h3><span id="创建定时任务类">创建定时任务类</span></h3><p> 需要实现<code>SchedulingConfigurer</code>接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Scheduled</span> <span class="keyword">implements</span> <span class="title">SchedulingConfigurer</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String cron;</span><br><span class="line">    TaskScheduler taskScheduler;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	CronMapper cronMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TaskScheduler <span class="title">taskScheduler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ThreadPoolTaskScheduler scheduler = <span class="keyword">new</span> ThreadPoolTaskScheduler();</span><br><span class="line">        scheduler.setPoolSize(<span class="number">30</span>);</span><br><span class="line">        scheduler.setThreadNamePrefix(<span class="string">&quot;TaskScheduler-&quot;</span>);</span><br><span class="line">        scheduler.initialize();</span><br><span class="line">        <span class="keyword">return</span> scheduler;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureTasks</span><span class="params">(ScheduledTaskRegistrar taskRegistrar)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.taskRegistrar=taskRegistrar;</span><br><span class="line">		<span class="keyword">this</span>.taskScheduler=taskScheduler();</span><br><span class="line">		scheduleTask();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scheduleTask</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		 taskScheduler.schedule(<span class="keyword">this</span>.task, triggerContext -&gt; &#123;</span><br><span class="line">             <span class="comment">//从数据库获取执行周期</span></span><br><span class="line">             <span class="keyword">if</span>(!StringUtils.hasText(<span class="keyword">this</span>.cron)) &#123;</span><br><span class="line">             	Cron c = cronMapper.selectById(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">             	<span class="comment">//如果为空设置默认</span></span><br><span class="line">             	<span class="keyword">if</span>(c==<span class="keyword">null</span>) &#123;</span><br><span class="line">             		c=<span class="keyword">new</span> Cron();</span><br><span class="line">                 	c.setCronId(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">                 	c.setCron(<span class="string">&quot;0 0 0/6 * * ? &quot;</span>);</span><br><span class="line">                 	cronMapper.insert(c);</span><br><span class="line">             	&#125;</span><br><span class="line">             	<span class="keyword">this</span>.cron = c.getCron();</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="comment">//返回执行周期</span></span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">new</span> CronTrigger(<span class="keyword">this</span>.cron).nextExecutionTime(triggerContext);</span><br><span class="line">         &#125;);</span><br><span class="line">	 &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCron</span><span class="params">(String cron)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.cron = cron;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>保存后重启caddy: <code>systemctl restart caddy.service</code> </p>
-<p>访问配置的域名，结果发现域名访问不进来，官方的说法是，不配置前缀只配置域名，默认转发<a href="http://reiner.host/">http://reiner.host</a> 以及 <a href="https://reiner.host/">https://reiner.host</a> 的80和443端口，理论上这么配置应该没错。</p>
-<p>这里我的版本是caddy 2.6.x </p>
-<h1><span id="最终解决">最终解决</span></h1><p>最终我打算不再相信官方文档，手动配置每个需要转发的端口，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">www.reiner.host:80 www.reiner.host:443 reiner.host:80 reiner.host:443 &#123;</span><br><span class="line">        tls reinershir@gmail.com</span><br><span class="line">        root * &#x2F;data&#x2F;pages</span><br><span class="line">        file_server</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gateway.reiner.host:80 gateway.reiner.host:443 &#123;</span><br><span class="line">        tls reinershir@gmail.com</span><br><span class="line">        reverse_proxy localhost:8000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其中第一段配置是将<code>/data/pages</code>文件夹下所有文件作为HTTP服务器，通过访问如 reiner.host 或者 <a target="_blank" rel="noopener" href="http://www.reiner.host/">www.reiner.host</a> 转发到 <code>/data/pages/index.html</code> </p>
-<p>第二段是配置后台接口的地址，通过访问gateway.reiner.host 转发到本地的8000端口服务</p>
-<p>tls 的作用是帮你申请ssl证书，这一点比nginx方便很多，当配置完重启后已经可以直接通过https访问了</p>
-<p><strong>2023-8-26 update</strong><br>针对同一个域名，根据不同的路径转换到不同的服务，配置示例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">www.reiner.host:80 www.reiner.host:443 reiner.host:80 reiner.host:443 &#123;</span><br><span class="line">        tls reinershir@gmail.com</span><br><span class="line">        reverse_proxy localhost:8080</span><br><span class="line">        handle_path &#x2F;api&#x2F;user&#x2F;* &#123;</span><br><span class="line">            reverse_proxy localhost:8081</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例如访问reiner.host/api/user/xxx  就会转发到服务器的8081端口</p>
-
+<h3><span id="通过接口触发修改执行时间">通过接口触发修改执行时间</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">updateCron</span><span class="params">(String cron)</span></span>&#123;</span><br><span class="line">	 <span class="comment">//此处省略修改数据库中的cron 值 </span></span><br><span class="line">     ...</span><br><span class="line"></span><br><span class="line">     <span class="comment">//修改为新的执行时间</span></span><br><span class="line">     scheduled.setCron(cron);</span><br><span class="line">     scheduled.scheduleTask();</span><br><span class="line">     <span class="keyword">return</span> <span class="string">&quot;修改成功&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     
 
     
@@ -374,7 +312,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://reiner.host/posts/100d4ce.html" title="使用Caddy作为HTTP服务器并配置反向代理到本地端口" target="_blank">https://reiner.host/posts/100d4ce.html</a>
+          <a href="https://reiner.host/posts/0.html" title="" target="_blank">https://reiner.host/posts/0.html</a>
         </li>
         
         <li>
@@ -391,29 +329,7 @@
   <div class="article-info article-info-index">
     
     
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-- caddy -- 反向代理 -- nginx </a>
-        		</li>
-      		
-		</ul>
-	</div>
-
     
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/运维//" class="article-tag-list-link color3">运维</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
     
 
@@ -463,7 +379,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://reiner.host/posts/100d4ce.html" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://reiner.host/posts/0.html" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -488,8 +404,8 @@
     </a>
   
   
-    <a href="/posts/8f0289a1.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Implementing AI customer service based on Langchain</div>
+    <a href="/posts/100d4ce.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Caddy作为HTTP服务器并配置反向代理到本地端口</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -516,7 +432,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">用途</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">弯路</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">最终解决</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.0.1.</span> <span class="toc-text">创建定时任务类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.0.2.</span> <span class="toc-text">通过接口触发修改执行时间</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -543,9 +459,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "使用Caddy作为HTTP服务器并配置反向代理到本地端口" -->
+    <!-- id: "" -->
     var gitment = new Gitment({
-      id: "20230702215901",
+      id: "20240312121659",
       owner: 'reinershir',
       repo: 'reinershir.github.io',
       oauth: {

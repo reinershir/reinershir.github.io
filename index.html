@@ -292,6 +292,131 @@
             
 
   
+    <article id="post-分布式常见面试笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1><span id="java分布式服务常见面试题">JAVA分布式服务常见面试题</span></h1><h1><span id="分布式事务">分布式事务</span></h1><h3><span id="seata">Seata</span></h3><p>seata是阿里开源的分布式事务调度框架，支持TCC、AT、SAGA、XA四种模式</p>
+<ul>
+<li><p>AT<br>SEATA默认是AT模式，通过@GlobalTrancation 动态代理生成全局事务ID，并通过RM来管理全局事务，如中间出错需要回滚事务时则通过数据库中的undo-log回写，undolog记录了数据提交前的状态</p>
+</li>
+<li><p>XA<br>二阶段提交，需要数据库本身支持XA协议</p>
+</li>
+<li><p>TCC<br>即 尝试(Try)-确认(Confirm)-取消(Cancel)，每个事务都分成这三个阶段，在提交事务前向另一个系统发送确认消息，两边系统都确认OK了才执行提交操作，有一方出现异常则执行Cancel（补偿方法），缺点在于三个方法都需要自已手动完成</p>
+</li>
+<li><p>SAGA<br>与TCC类似，不同点在于一阶段直接提交事务，失败则执行补偿操作，无锁，因此性能相对较好，但同时由于没有事务隔离性会带来赃写</p>
+</li>
+</ul>
+<h1><span id="分布式锁">分布式锁</span></h1><h3><span id="基于数据库的cas乐观锁">基于数据库的CAS乐观锁</span></h3><p>  更新数据的时候带上指定版本号，如果被其他线程提前更新的版本号，则此次更新失败，缺点对数据库表侵入较大，每个表需要增加version字段，高并发下存在很多更新失败。</p>
+<h3><span id="通过redis实现">通过redis实现</span></h3><p>  使用命令 <code>SET key value NX PX milliseconds</code> </p>
+<p>缺点:</p>
+<ul>
+<li>获取锁是非阻塞</li>
+<li>非公平锁，不支持需要公平锁的场景</li>
+<li>redis主从存在延迟，在master宕机发生主从切换时，可能会导致锁失效</li>
+</ul>
+<p>改进：<br>  基于Redlock算法实现分布式锁。 redisson对Redlock算法进行了封装。<br>  <strong>简单来说就是同时向多个节点发送锁定命令，当获取锁时由于是多个节点会有时间差问题。</strong></p>
+<p>  **客户端计算获取锁所花的时间，只有当客户端在大多数master节点上成功获取了锁，而且总共消耗的时间不超过锁释放时间，这个锁就认为是获取成功了 **</p>
+<h3><span id="基于zookeeper实现分布式锁">基于zookeeper实现分布式锁</span></h3>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/posts/0.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringBoot定时任务Scheduled动态修改Cron执行时间" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1><span id="场景">场景</span></h1><p>  当某些简单的定时任务需要通过后台修改执行时间时，通过spring boot自带的定时任务来实现是个不错的选择。</p>
+<h1><span id="代码实现">代码实现</span></h1><h3><span id="创建定时任务类">创建定时任务类</span></h3><p> 需要实现<code>SchedulingConfigurer</code>接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Scheduled</span> <span class="keyword">implements</span> <span class="title">SchedulingConfigurer</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String cron;</span><br><span class="line">    TaskScheduler taskScheduler;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	CronMapper cronMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TaskScheduler <span class="title">taskScheduler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ThreadPoolTaskScheduler scheduler = <span class="keyword">new</span> ThreadPoolTaskScheduler();</span><br><span class="line">        scheduler.setPoolSize(<span class="number">30</span>);</span><br><span class="line">        scheduler.setThreadNamePrefix(<span class="string">&quot;TaskScheduler-&quot;</span>);</span><br><span class="line">        scheduler.initialize();</span><br><span class="line">        <span class="keyword">return</span> scheduler;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureTasks</span><span class="params">(ScheduledTaskRegistrar taskRegistrar)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.taskRegistrar=taskRegistrar;</span><br><span class="line">		<span class="keyword">this</span>.taskScheduler=taskScheduler();</span><br><span class="line">		scheduleTask();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scheduleTask</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		 taskScheduler.schedule(<span class="keyword">this</span>.task, triggerContext -&gt; &#123;</span><br><span class="line">             <span class="comment">//从数据库获取执行周期</span></span><br><span class="line">             <span class="keyword">if</span>(!StringUtils.hasText(<span class="keyword">this</span>.cron)) &#123;</span><br><span class="line">             	Cron c = cronMapper.selectById(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">             	<span class="comment">//如果为空设置默认</span></span><br><span class="line">             	<span class="keyword">if</span>(c==<span class="keyword">null</span>) &#123;</span><br><span class="line">             		c=<span class="keyword">new</span> Cron();</span><br><span class="line">                 	c.setCronId(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">                 	c.setCron(<span class="string">&quot;0 0 0/6 * * ? &quot;</span>);</span><br><span class="line">                 	cronMapper.insert(c);</span><br><span class="line">             	&#125;</span><br><span class="line">             	<span class="keyword">this</span>.cron = c.getCron();</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="comment">//返回执行周期</span></span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">new</span> CronTrigger(<span class="keyword">this</span>.cron).nextExecutionTime(triggerContext);</span><br><span class="line">         &#125;);</span><br><span class="line">	 &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCron</span><span class="params">(String cron)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.cron = cron;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3><span id="通过接口触发修改执行时间">通过接口触发修改执行时间</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">updateCron</span><span class="params">(String cron)</span></span>&#123;</span><br><span class="line">	 <span class="comment">//此处省略修改数据库中的cron 值 </span></span><br><span class="line">     ...</span><br><span class="line"></span><br><span class="line">     <span class="comment">//修改为新的执行时间</span></span><br><span class="line">     scheduled.setCron(cron);</span><br><span class="line">     scheduled.scheduleTask();</span><br><span class="line">     <span class="keyword">return</span> <span class="string">&quot;修改成功&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/posts/0.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-使用Caddy作为HTTP服务器并配置反向代理到本地端口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -336,6 +461,9 @@
 <p>其中第一段配置是将<code>/data/pages</code>文件夹下所有文件作为HTTP服务器，通过访问如 reiner.host 或者 <a target="_blank" rel="noopener" href="http://www.reiner.host/">www.reiner.host</a> 转发到 <code>/data/pages/index.html</code> </p>
 <p>第二段是配置后台接口的地址，通过访问gateway.reiner.host 转发到本地的8000端口服务</p>
 <p>tls 的作用是帮你申请ssl证书，这一点比nginx方便很多，当配置完重启后已经可以直接通过https访问了</p>
+<p><strong>2023-8-26 update</strong><br>针对同一个域名，根据不同的路径转换到不同的服务，配置示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">www.reiner.host:80 www.reiner.host:443 reiner.host:80 reiner.host:443 &#123;</span><br><span class="line">        tls reinershir@gmail.com</span><br><span class="line">        reverse_proxy localhost:8080</span><br><span class="line">        handle_path &#x2F;api&#x2F;user&#x2F;* &#123;</span><br><span class="line">            reverse_proxy localhost:8081</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如访问reiner.host/api/user/xxx  就会转发到服务器的8081端口</p>
 
     
 
@@ -1215,242 +1343,6 @@
 
 
   
-    <article id="post-解决使用netty作为TCP服务端时设备接收消息连包问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/d0c795f9.html" target="_blank">解决使用netty作为TCP服务端时设备接收消息连包问题</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/d0c795f9.html" class="archive-article-date">
-        <time datetime="2021-06-11T07:28:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-11</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在前一章记录了如何使用netty作为TCP通信的服务端：<a href="https://reiner.host/posts/94ca3821.html">点击前往</a> ，本章记录一下如何解决硬件设备在接收到服务端发送过来的消息时有连包的问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在通过监测硬件的收包信息时发现偶尔会出现心跳包和指令“粘”在一块的情况，例如指令的发送内容是：<code>EEFF0103GGHH</code>,心跳包的回复是：<code>EEFF0201GGHH</code>。</p>
-<p>当心跳包返回信息的时候此时正好指令下发，那么设备端就会收到：<code>EEFF0103GGHHEEFF0201GGHH</code>。</p>
-<p>这是由于调用netty的<code>writeAndFlush()</code>方法时并不是马上将数据发送过去，而将它放在一个缓冲池当中，而由于硬件的一发一收通信机制客户端无法对连包的数据做分割，因此这个问题要由服务端解决。</p>
-    
-    <a class="article-more-a" href="/posts/d0c795f9.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">netty</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TCP服务端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TCP粘包</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TCP半包</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">16进制通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JAVA//" class="article-tag-list-link color5">JAVA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/d0c795f9.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-TCP-IP协议自我总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/cc861966.html" target="_blank">HTTP&amp;TCP/IP协议自我总结</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/cc861966.html" class="archive-article-date">
-        <time datetime="2021-05-25T02:58:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-25</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="HTTP、HTTPS、TCP-IP总结"><a href="#HTTP、HTTPS、TCP-IP总结" class="headerlink" title="HTTP、HTTPS、TCP/IP总结"></a>HTTP、HTTPS、TCP/IP总结</h1><h4 id="协议分类"><a href="#协议分类" class="headerlink" title="协议分类"></a>协议分类</h4><p>HTTP属于应用层协议，TCP属于传输层协议，IP属于网络层协议，一个HTTP协议由IP协议包体包含了TCP协议内容，而TCP协议包体又包括了HTTP协议内容，就像一个洋葱。</p>
-<h4 id="HTTP请求历程"><a href="#HTTP请求历程" class="headerlink" title="HTTP请求历程"></a>HTTP请求历程</h4><p>一个HTTP请求的完整历程，首先会根据URL解析请求的地址和端口，此时的地址拿到的一般是域名，因此还需要根据DNS服务器获取域名的真实IP。</p>
-<p>NDS服务查询完毕后，此时浏览器会调用Socket库将HTTP协议里的内容包装成TCP或者UDP协议包。</p>
-<p>光靠TCP协议还无法具备传输功能，因此TCP还需要借助IP协议来定位目标服务器在互联网中的位置，光靠IP依旧无法准确定位，因为一个IP可能有好几台设备使用，要明确要传输的目标还得在IP头部加上目标的MAC地址。</p>
-<p>最后由网卡将数字信息转换为光信号经网线发送出去，将服务器通过交换机和路由器接收到请求包后像剥洋葱一样一层一层解析包中内容。</p>
-<p>小结，一个HTTP请求总共要经历如下几层协议：</p>
-<ul>
-<li><p>应用层：定义数据格式，并按照对应的格式解读数据。 –HTTP</p>
-</li>
-<li><p>传输层：定义端口，确认主机上应用程序的身份，并将数据包交给对应的应用程序。 –TCP</p>
-</li>
-<li><p>网络层：定义IP地址，确认主机所在的网络位置，并通过IP进行MAC寻址，对外网数据包进行路由转发。 –IP</p>
-</li>
-<li><p>链路层：对0和1进行分组，定义数据帧，确认主机的物理地址，传输数据。 –物理传输</p>
-</li>
-</ul>
-    
-    <a class="article-more-a" href="/posts/cc861966.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">TCP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HTTP协议</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JAVA//" class="article-tag-list-link color5">JAVA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/cc861966.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1465,7 +1357,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020-2023 <a href="https://reiner.host/" target="_blank">reiner</a>
+    		&copy; 2020-2024 <a href="https://reiner.host/" target="_blank">reiner</a>
     	</div>
       	<div class="footer-right">
 			
