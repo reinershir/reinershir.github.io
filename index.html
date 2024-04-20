@@ -292,12 +292,97 @@
             
 
   
+    <article id="Enable AI to have internet access - Google search integrated langchain-langchain" class="article article-type-Enable AI to have internet access - Google search integrated langchain  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1><span id="basic-dependency">Basic dependency</span></h1><ul>
+<li>python 3.1.12 + </li>
+<li>langchain 0.1.12 + </li>
+<li>SERPAPI_API_KEY</li>
+<li>OPEN_AI_API_KEY</li>
+</ul>
+<p>SERPAPI_API_KEY get from <a target="_blank" rel="noopener" href="https://serpapi.com/">https://serpapi.com/</a></p>
+<p>Install the following dependencies:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pip install langchain</span><br><span class="line">pip install pymupdf</span><br><span class="line">pip install openai</span><br><span class="line">pip install --upgrade --quiet  langchain langchain-community langchainhub langchain-openai chromadb bs4</span><br><span class="line">pip install --upgrade langchain-openai tiktoken chromadb langchain</span><br><span class="line">pip install fake_useragent</span><br></pre></td></tr></table></figure>
+
+<h1><span id="get-start">Get start</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># set the api key</span></span><br><span class="line">os.environ[<span class="string">&quot;SERPAPI_API_KEY&quot;</span>] = <span class="string">&#x27;003dc0d2d9e0dc818aa2b497342346dfgdf799af1849c5d1249d34dd7&#x27;</span></span><br><span class="line">openai.api_key=<span class="string">&quot;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&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> langchain_core.prompts <span class="keyword">import</span> ChatPromptTemplate, MessagesPlaceholder</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ChatMessageHistory</span><br><span class="line"><span class="keyword">from</span> langchain_text_splitters <span class="keyword">import</span> RecursiveCharacterTextSplitter</span><br><span class="line"><span class="keyword">from</span> langchain_community.vectorstores <span class="keyword">import</span> Chroma</span><br><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> OpenAIEmbeddings</span><br><span class="line"></span><br><span class="line"><span class="comment"># build tool agent</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> langchain_community.utilities <span class="keyword">import</span> SerpAPIWrapper</span><br><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> create_openai_tools_agent</span><br><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> AgentExecutor,Tool</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferWindowMemory</span><br><span class="line"></span><br><span class="line">chat = ChatOpenAI(model=<span class="string">&quot;gpt-3.5-turbo-1106&quot;</span>,streaming=<span class="literal">True</span>,max_tokens=<span class="number">4090</span>,max_retries=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 加载 serpapi 工具</span></span><br><span class="line">search = SerpAPIWrapper()</span><br><span class="line"></span><br><span class="line">tools = [Tool(</span><br><span class="line">    name=<span class="string">&quot;google_search&quot;</span>,</span><br><span class="line">    description=<span class="string">&quot;Search Google for recent results.&quot;</span>,</span><br><span class="line">    func=search.run,</span><br><span class="line">    max_results=<span class="number">1</span>,</span><br><span class="line">    max_iterations=<span class="number">2</span>,</span><br><span class="line">    max_retries=<span class="number">2</span>,</span><br><span class="line">    max_consecutive_errors=<span class="number">2</span>,</span><br><span class="line">    max_tokens=<span class="number">2000</span>, <span class="comment">#must</span></span><br><span class="line">    return_direct=<span class="literal">False</span></span><br><span class="line">)]</span><br><span class="line"></span><br><span class="line">prompt = ChatPromptTemplate.from_messages(</span><br><span class="line">    [</span><br><span class="line">        (</span><br><span class="line">            <span class="string">&quot;system&quot;</span>,</span><br><span class="line">            <span class="string">&quot;You are a helpful assistant. You may not need to use tools for every query - the user may just want to chat!&quot;</span>,</span><br><span class="line">        ),</span><br><span class="line">         (<span class="string">&quot;user&quot;</span>, <span class="string">&quot;&#123;input&#125;&quot;</span>),</span><br><span class="line">         MessagesPlaceholder(variable_name=<span class="string">&quot;agent_scratchpad&quot;</span>),</span><br><span class="line">    ]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">memory = ConversationBufferWindowMemory(k=<span class="number">2</span>, return_messages=<span class="literal">True</span>)</span><br><span class="line">agent = create_openai_tools_agent(tools = tools,llm = chat,prompt=prompt)</span><br><span class="line">agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=<span class="literal">True</span>,max_iterations=<span class="number">2</span>,memory=memory)</span><br><span class="line">response = agent_executor.invoke(&#123;<span class="string">&quot;input&quot;</span>: <span class="string">&#x27;Who is the current President of the United States?&#x27;</span>&#125;)</span><br><span class="line">print(response)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Now AI can first use Google search and then answer your questions.</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-- AI -- ChatGPT -- 对话机器人 </a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/AI//" class="article-tag-list-link color3">AI</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/posts/undefined.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-分布式常见面试笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
   <div class="article-entry" itemprop="articleBody">
     
-    <h1><span id="java分布式服务常见面试题">JAVA分布式服务常见面试题</span></h1><h1><span id="分布式事务">分布式事务</span></h1><h3><span id="seata">Seata</span></h3><p>seata是阿里开源的分布式事务调度框架，支持TCC、AT、SAGA、XA四种模式</p>
+    <h1 id="JAVA分布式服务常见面试题"><a href="#JAVA分布式服务常见面试题" class="headerlink" title="JAVA分布式服务常见面试题"></a>JAVA分布式服务常见面试题</h1><h1 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h1><h3 id="Seata"><a href="#Seata" class="headerlink" title="Seata"></a>Seata</h3><p>seata是阿里开源的分布式事务调度框架，支持TCC、AT、SAGA、XA四种模式</p>
 <ul>
 <li><p>AT<br>SEATA默认是AT模式，通过@GlobalTrancation 动态代理生成全局事务ID，并通过RM来管理全局事务，如中间出错需要回滚事务时则通过数据库中的undo-log回写，undolog记录了数据提交前的状态</p>
 </li>
@@ -308,17 +393,9 @@
 <li><p>SAGA<br>与TCC类似，不同点在于一阶段直接提交事务，失败则执行补偿操作，无锁，因此性能相对较好，但同时由于没有事务隔离性会带来赃写</p>
 </li>
 </ul>
-<h1><span id="分布式锁">分布式锁</span></h1><h3><span id="基于数据库的cas乐观锁">基于数据库的CAS乐观锁</span></h3><p>  更新数据的时候带上指定版本号，如果被其他线程提前更新的版本号，则此次更新失败，缺点对数据库表侵入较大，每个表需要增加version字段，高并发下存在很多更新失败。</p>
-<h3><span id="通过redis实现">通过redis实现</span></h3><p>  使用命令 <code>SET key value NX PX milliseconds</code> </p>
-<p>缺点:</p>
-<ul>
-<li>获取锁是非阻塞</li>
-<li>非公平锁，不支持需要公平锁的场景</li>
-<li>redis主从存在延迟，在master宕机发生主从切换时，可能会导致锁失效</li>
-</ul>
-<p>改进：<br>  基于Redlock算法实现分布式锁。 redisson对Redlock算法进行了封装。<br>  <strong>简单来说就是同时向多个节点发送锁定命令，当获取锁时由于是多个节点会有时间差问题。</strong></p>
-<p>  **客户端计算获取锁所花的时间，只有当客户端在大多数master节点上成功获取了锁，而且总共消耗的时间不超过锁释放时间，这个锁就认为是获取成功了 **</p>
-<h3><span id="基于zookeeper实现分布式锁">基于zookeeper实现分布式锁</span></h3>
+    
+    <a class="article-more-a" href="/posts/0.html#more">more >></a>
+    
     
 
     
@@ -1206,114 +1283,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/posts/210f1a3e.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-左右值树形结构移动节点方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/cfc5b0c5.html" target="_blank">左右值树形结构移动节点方法(modified preorder tree traversal move node)</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/cfc5b0c5.html" class="archive-article-date">
-        <time datetime="2021-06-17T07:57:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>在之前的文章：<a href="https://reiner.host/posts/9340b114.html">使用左右值树形数据结构实现树形菜单</a> 中记录了如何使用左右值增删改查节点，本次将记录一下如何移动节点，语言使用JAVA + MYSQL实现。</p>
-<p><strong>总体思路</strong></p>
-<p>移动节点的大致思路是记录移动节点和目标节点之间的左右值以及其子节点的左右值，移动节点及其子节点左右值和目标节点及其子节点的左右值相互加减。</p>
-<p><strong>举例</strong></p>
-<p>节点A的左右值是LEFT=1,RIGHT=2，节点B的左右值是LEFT=5,RIGHT=6，现在要将节点A移动到节点B前面，那么它的移动范围就是RIGHT - LEFT + 1，即：2 - 1 +1 = 2，也就是说节点A左右值+2，左右值小于节点B的左右值-2 。</p>
-<p>结果：节点A的LEFT = 3 ,RIGHT = 4，节点B前面的节点左右值减了2变成了LEFT=1,RIGHT=2，相当于和节点A换了个位置，如此来达到移动节点的目的</p>
-<p>后续的移动到节点B后面、移动到节点B作为其子节点思路相同。</p>
-<p><strong>更新</strong></p>
-<p>2021-6-22 更新</p>
-<p>修复了BUG，最新代码请关注： <a target="_blank" rel="noopener" href="https://github.com/reinershir/lui-auth">https://github.com/reinershir/lui-auth</a>  以下代码摘抄自菜单管理功能</p>
-    
-    <a class="article-more-a" href="/posts/cfc5b0c5.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-- 数据结构 -- 算法 -- modified preorder tree traversal -- 左右值树形</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构与算法//" class="article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/cfc5b0c5.html">展开全文 >></a>
     </p>
     
 

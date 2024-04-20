@@ -292,6 +292,114 @@
             
 
   
+    <article id="post-左右值树形结构移动节点方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/posts/cfc5b0c5.html" target="_blank">左右值树形结构移动节点方法(modified preorder tree traversal move node)</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/posts/cfc5b0c5.html" class="archive-article-date">
+        <time datetime="2021-06-17T07:57:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-17</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>在之前的文章：<a href="https://reiner.host/posts/9340b114.html">使用左右值树形数据结构实现树形菜单</a> 中记录了如何使用左右值增删改查节点，本次将记录一下如何移动节点，语言使用JAVA + MYSQL实现。</p>
+<p><strong>总体思路</strong></p>
+<p>移动节点的大致思路是记录移动节点和目标节点之间的左右值以及其子节点的左右值，移动节点及其子节点左右值和目标节点及其子节点的左右值相互加减。</p>
+<p><strong>举例</strong></p>
+<p>节点A的左右值是LEFT=1,RIGHT=2，节点B的左右值是LEFT=5,RIGHT=6，现在要将节点A移动到节点B前面，那么它的移动范围就是RIGHT - LEFT + 1，即：2 - 1 +1 = 2，也就是说节点A左右值+2，左右值小于节点B的左右值-2 。</p>
+<p>结果：节点A的LEFT = 3 ,RIGHT = 4，节点B前面的节点左右值减了2变成了LEFT=1,RIGHT=2，相当于和节点A换了个位置，如此来达到移动节点的目的</p>
+<p>后续的移动到节点B后面、移动到节点B作为其子节点思路相同。</p>
+<p><strong>更新</strong></p>
+<p>2021-6-22 更新</p>
+<p>修复了BUG，最新代码请关注： <a target="_blank" rel="noopener" href="https://github.com/reinershir/lui-auth">https://github.com/reinershir/lui-auth</a>  以下代码摘抄自菜单管理功能</p>
+    
+    <a class="article-more-a" href="/posts/cfc5b0c5.html#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-- 数据结构 -- 算法 -- modified preorder tree traversal -- 左右值树形</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构与算法//" class="article-tag-list-link color3">数据结构与算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/posts/cfc5b0c5.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-解决使用netty作为TCP服务端时设备接收消息连包问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1377,144 +1485,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/posts/5156ccce.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-自用技术笔记（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/bdfc15fa.html" target="_blank">自用技术笔记（一）</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/bdfc15fa.html" class="archive-article-date">
-        <time datetime="2021-01-20T06:19:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-20</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>整理了一下记录在手机中的技术知识点，包含JAVA、MYSQL、数据结构等，自用笔记，放博客上备份以备不时之需，如若有人发现错误还请指出。</p>
-<p>由于太长，分成两篇记录,笔记二地址： <a href="/posts/8deaf922.html">自自技术笔记（二）</a></p>
-<h2 id="红黑树笔记"><a href="#红黑树笔记" class="headerlink" title="红黑树笔记"></a>红黑树笔记</h2><p><strong>红黑树</strong></p>
-<p>红黑树其实就是平衡二叉树，该规则可保证每个节点都是平衡的，不会出现单个节点过长的情况</p>
-<p>红黑树的作用，红黑树是一种平衡二叉树，不会退化为链表，多用于搜索查找，时间复杂度logn,也就是树的深度，倍数增长，红黑树是局部平衡二叉树</p>
-<p>普通二叉树的局限性是子节点都比父节点小因此全排在右，会退化成链表</p>
-<p><strong>红黑树4个性质</strong></p>
-<ul>
-<li>1.节点是红色或者黑色</li>
-<li>2.红色节点不会连在一起（子父节点不能同为红色）</li>
-<li>3.根节点都是黑色</li>
-<li>4.空的叶子节点都是黑色（既无子节点）</li>
-</ul>
-<p>红黑树有三种变化规则<br>1.红变黑  2.黑变红 3.旋转</p>
-<p><strong>红黑树的操作规则</strong></p>
-<ul>
-<li>0.所有变换后的节点不可违背红黑树的基本性质，既当插入节点后规则不符合红黑树基本性质时依次尝试，变色、左旋、右旋</li>
-<li>1.所有插入的节点默认为红色</li>
-<li>2.变换颜色条件，当子节点和父节点以及父节点的兄弟节点都是红色时需要变换颜色，颜色变换规则为将父节点以及父节点的兄弟节点变换成红色，将祖节点变换为红色</li>
-<li>3.左旋条件，当前节点的父节点是红色，叔叔节点是黑色，且当前节点是父节点的右子树时，旋转父节点和祖节点</li>
-<li>4.右旋条件，当前父节点是红色，叔叔节点是黑色，且当前节点是左子树时右旋转，与左旋不同的是右旋转操作是旋转祖节点和祖父节点</li>
-</ul>
-<p><strong>右旋有3步</strong></p>
-<ul>
-<li>1.把父节点变为黑色</li>
-<li>2.把祖节点变为红色</li>
-<li>3.把以祖节点为旋转点旋转（不同于左旋以父节点为旋转点）</li>
-</ul>
-    
-    <a class="article-more-a" href="/posts/bdfc15fa.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MYSQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JAVA//" class="article-tag-list-link color5">JAVA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/bdfc15fa.html">展开全文 >></a>
     </p>
     
 
