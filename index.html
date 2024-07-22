@@ -292,9 +292,111 @@
             
 
   
+    <article id="记caddy2报:no cipher suite supported by both client and server-cadd2 no cipher suite supported by both client and server" class="article article-type-记caddy2报:no cipher suite supported by both client and server  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/posts/undefined.html" target="_blank">记caddy2报:no cipher suite supported by both client and server</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/posts/undefined.html" class="archive-article-date">
+        <time datetime="2024-07-22T05:50:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-22</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1><span id="描述">描述</span></h1><p>配置好域名转发后发现依旧无法访问，使用<code>service caddy status</code> 发现报错： <code>no cipher suite supported by both client and server</code></p>
+<h1><span id="解决">解决</span></h1><p>改成如下配置:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">site.com &#123;</span><br><span class="line">        reverse_proxy localhost:8080</span><br><span class="line">        tls &#123;</span><br><span class="line">                protocols tls1.2 tls1.2</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>增加 tls协议配置即可</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/posts/undefined.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="Enable AI to have internet access - Google search integrated langchain-langchain" class="article article-type-Enable AI to have internet access - Google search integrated langchain  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/posts/undefined.html" target="_blank">Enable AI to have internet access - Google search integrated langchain</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/posts/undefined.html" class="archive-article-date">
+        <time datetime="2024-04-20T04:19:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-20</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
   <div class="article-entry" itemprop="articleBody">
     
     <h1><span id="basic-dependency">Basic dependency</span></h1><ul>
@@ -380,6 +482,30 @@
     <article id="post-分布式常见面试笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/posts/4320.html" target="_blank">分布式常见面试笔记</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/posts/4320.html" class="archive-article-date">
+        <time datetime="2024-03-12T04:17:44.991Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-12</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
   <div class="article-entry" itemprop="articleBody">
     
     <h1 id="JAVA分布式服务常见面试题"><a href="#JAVA分布式服务常见面试题" class="headerlink" title="JAVA分布式服务常见面试题"></a>JAVA分布式服务常见面试题</h1><h1 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h1><h3 id="Seata"><a href="#Seata" class="headerlink" title="Seata"></a>Seata</h3><p>seata是阿里开源的分布式事务调度框架，支持TCC、AT、SAGA、XA四种模式</p>
@@ -394,7 +520,7 @@
 </li>
 </ul>
     
-    <a class="article-more-a" href="/posts/0.html#more">more >></a>
+    <a class="article-more-a" href="/posts/4320.html#more">more >></a>
     
     
 
@@ -410,7 +536,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/posts/0.html">展开全文 >></a>
+      <a class="article-more-a" href="/posts/4320.html">展开全文 >></a>
     </p>
     
 
@@ -443,6 +569,30 @@
     <article id="post-SpringBoot定时任务Scheduled动态修改Cron执行时间" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/posts/1230.html" target="_blank">SpringBoot定时任务Scheduled动态修改Cron执行时间</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/posts/1230.html" class="archive-article-date">
+        <time datetime="2024-03-12T04:16:59.833Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-12</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
   <div class="article-entry" itemprop="articleBody">
     
     <h1><span id="场景">场景</span></h1><p>  当某些简单的定时任务需要通过后台修改执行时间时，通过spring boot自带的定时任务来实现是个不错的选择。</p>
@@ -464,7 +614,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/posts/0.html">展开全文 >></a>
+      <a class="article-more-a" href="/posts/1230.html">展开全文 >></a>
     </p>
     
 
@@ -1173,116 +1323,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/posts/80ca5d35.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-程序员的科学养生指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/210f1a3e.html" target="_blank">生活笔记之日常生活中的科学养生</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/210f1a3e.html" class="archive-article-date">
-        <time datetime="2021-07-06T07:02:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-06</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>  此文章为个人经验总结，纯当自用笔记(<del>反正也没人看</del>)，每个人的体质和情况各不相同，不保证对每个人都有效。</p>
-<p>某伟人曾说过：身体是革命的本钱，钱没了还可以再嫌，人病了那就人财两空了。</p>
-<h1 id="口腔溃疡"><a href="#口腔溃疡" class="headerlink" title="口腔溃疡"></a>口腔溃疡</h1><p> 口腔溃疡一般是由于饮食不均衡导致的，在外漂泊的打工人多数没有条件自己做饭，吃外卖又容易营养不均衡，解决办法如下：</p>
-<ul>
-<li>常备维生素B族(10块钱一瓶的那种，不要买保健品！)，药店里有，千万不要买那些几十几百的，都是智商税，感觉有点溃疡的苗头时就要提前吃，或者每周定期吃。</li>
-<li>酸奶，冰箱里常备酸奶，饭后来一杯，酸奶含有多种人体所需维生素，正好弥补吃外卖饮食不均衡问题</li>
-</ul>
-<p>自此以后再也不怕口腔溃疡啦！</p>
-    
-    <a class="article-more-a" href="/posts/210f1a3e.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">生活笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/其它//" class="article-tag-list-link color3">其它</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/210f1a3e.html">展开全文 >></a>
     </p>
     
 

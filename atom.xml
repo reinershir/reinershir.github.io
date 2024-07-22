@@ -6,7 +6,7 @@
   <link href="https://reiner.host/atom.xml" rel="self"/>
   
   <link href="https://reiner.host/"/>
-  <updated>2024-04-20T04:35:32.530Z</updated>
+  <updated>2024-07-22T05:54:13.781Z</updated>
   <id>https://reiner.host/</id>
   
   <author>
@@ -17,11 +17,31 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>记caddy2报:no cipher suite supported by both client and server</title>
+    <link href="https://reiner.host/posts/undefined.html"/>
+    <id>https://reiner.host/posts/undefined.html</id>
+    <published>2024-07-22T05:50:54.000Z</published>
+    <updated>2024-07-22T05:54:13.781Z</updated>
+    
+    <content type="html"><![CDATA[<h1><span id="描述">描述</span></h1><p>配置好域名转发后发现依旧无法访问，使用<code>service caddy status</code> 发现报错： <code>no cipher suite supported by both client and server</code></p><h1><span id="解决">解决</span></h1><p>改成如下配置:</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">site.com &#123;</span><br><span class="line">        reverse_proxy localhost:8080</span><br><span class="line">        tls &#123;</span><br><span class="line">                protocols tls1.2 tls1.2</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>增加 tls协议配置即可</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;描述&quot;&gt;描述&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;配置好域名转发后发现依旧无法访问，使用&lt;code&gt;service caddy status&lt;/code&gt; 发现报错： &lt;code&gt;no cipher suite supported by both client</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Enable AI to have internet access - Google search integrated langchain</title>
     <link href="https://reiner.host/posts/undefined.html"/>
     <id>https://reiner.host/posts/undefined.html</id>
     <published>2024-04-20T04:19:29.000Z</published>
-    <updated>2024-04-20T04:35:32.530Z</updated>
+    <updated>2024-07-22T05:50:09.757Z</updated>
     
     <content type="html"><![CDATA[<h1><span id="basic-dependency">Basic dependency</span></h1><ul><li>python 3.1.12 + </li><li>langchain 0.1.12 + </li><li>SERPAPI_API_KEY</li><li>OPEN_AI_API_KEY</li></ul><p>SERPAPI_API_KEY get from <a href="https://serpapi.com/">https://serpapi.com/</a></p><p>Install the following dependencies:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pip install langchain</span><br><span class="line">pip install pymupdf</span><br><span class="line">pip install openai</span><br><span class="line">pip install --upgrade --quiet  langchain langchain-community langchainhub langchain-openai chromadb bs4</span><br><span class="line">pip install --upgrade langchain-openai tiktoken chromadb langchain</span><br><span class="line">pip install fake_useragent</span><br></pre></td></tr></table></figure><h1><span id="get-start">Get start</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># set the api key</span></span><br><span class="line">os.environ[<span class="string">&quot;SERPAPI_API_KEY&quot;</span>] = <span class="string">&#x27;003dc0d2d9e0dc818aa2b497342346dfgdf799af1849c5d1249d34dd7&#x27;</span></span><br><span class="line">openai.api_key=<span class="string">&quot;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&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> langchain_core.prompts <span class="keyword">import</span> ChatPromptTemplate, MessagesPlaceholder</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ChatMessageHistory</span><br><span class="line"><span class="keyword">from</span> langchain_text_splitters <span class="keyword">import</span> RecursiveCharacterTextSplitter</span><br><span class="line"><span class="keyword">from</span> langchain_community.vectorstores <span class="keyword">import</span> Chroma</span><br><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> OpenAIEmbeddings</span><br><span class="line"></span><br><span class="line"><span class="comment"># build tool agent</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> langchain_community.utilities <span class="keyword">import</span> SerpAPIWrapper</span><br><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> create_openai_tools_agent</span><br><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> AgentExecutor,Tool</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferWindowMemory</span><br><span class="line"></span><br><span class="line">chat = ChatOpenAI(model=<span class="string">&quot;gpt-3.5-turbo-1106&quot;</span>,streaming=<span class="literal">True</span>,max_tokens=<span class="number">4090</span>,max_retries=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 加载 serpapi 工具</span></span><br><span class="line">search = SerpAPIWrapper()</span><br><span class="line"></span><br><span class="line">tools = [Tool(</span><br><span class="line">    name=<span class="string">&quot;google_search&quot;</span>,</span><br><span class="line">    description=<span class="string">&quot;Search Google for recent results.&quot;</span>,</span><br><span class="line">    func=search.run,</span><br><span class="line">    max_results=<span class="number">1</span>,</span><br><span class="line">    max_iterations=<span class="number">2</span>,</span><br><span class="line">    max_retries=<span class="number">2</span>,</span><br><span class="line">    max_consecutive_errors=<span class="number">2</span>,</span><br><span class="line">    max_tokens=<span class="number">2000</span>, <span class="comment">#must</span></span><br><span class="line">    return_direct=<span class="literal">False</span></span><br><span class="line">)]</span><br><span class="line"></span><br><span class="line">prompt = ChatPromptTemplate.from_messages(</span><br><span class="line">    [</span><br><span class="line">        (</span><br><span class="line">            <span class="string">&quot;system&quot;</span>,</span><br><span class="line">            <span class="string">&quot;You are a helpful assistant. You may not need to use tools for every query - the user may just want to chat!&quot;</span>,</span><br><span class="line">        ),</span><br><span class="line">         (<span class="string">&quot;user&quot;</span>, <span class="string">&quot;&#123;input&#125;&quot;</span>),</span><br><span class="line">         MessagesPlaceholder(variable_name=<span class="string">&quot;agent_scratchpad&quot;</span>),</span><br><span class="line">    ]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">memory = ConversationBufferWindowMemory(k=<span class="number">2</span>, return_messages=<span class="literal">True</span>)</span><br><span class="line">agent = create_openai_tools_agent(tools = tools,llm = chat,prompt=prompt)</span><br><span class="line">agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=<span class="literal">True</span>,max_iterations=<span class="number">2</span>,memory=memory)</span><br><span class="line">response = agent_executor.invoke(&#123;<span class="string">&quot;input&quot;</span>: <span class="string">&#x27;Who is the current President of the United States?&#x27;</span>&#125;)</span><br><span class="line">print(response)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>Now AI can first use Google search and then answer your questions.</p>]]></content>
     
@@ -44,11 +64,11 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="https://reiner.host/posts/0.html"/>
-    <id>https://reiner.host/posts/0.html</id>
+    <title>分布式常见面试笔记</title>
+    <link href="https://reiner.host/posts/4320.html"/>
+    <id>https://reiner.host/posts/4320.html</id>
     <published>2024-03-12T04:17:44.991Z</published>
-    <updated>2024-03-12T04:18:56.762Z</updated>
+    <updated>2024-07-22T05:57:55.599Z</updated>
     
     <content type="html"><![CDATA[<h1><span id="java分布式服务常见面试题">JAVA分布式服务常见面试题</span></h1><h1><span id="分布式事务">分布式事务</span></h1><h3><span id="seata">Seata</span></h3><p>seata是阿里开源的分布式事务调度框架，支持TCC、AT、SAGA、XA四种模式</p><ul><li><p>AT<br>SEATA默认是AT模式，通过@GlobalTrancation 动态代理生成全局事务ID，并通过RM来管理全局事务，如中间出错需要回滚事务时则通过数据库中的undo-log回写，undolog记录了数据提交前的状态</p></li><li><p>XA<br>二阶段提交，需要数据库本身支持XA协议</p></li><li><p>TCC<br>即 尝试(Try)-确认(Confirm)-取消(Cancel)，每个事务都分成这三个阶段，在提交事务前向另一个系统发送确认消息，两边系统都确认OK了才执行提交操作，有一方出现异常则执行Cancel（补偿方法），缺点在于三个方法都需要自已手动完成</p></li><li><p>SAGA<br>与TCC类似，不同点在于一阶段直接提交事务，失败则执行补偿操作，无锁，因此性能相对较好，但同时由于没有事务隔离性会带来赃写</p></li></ul><span id="more"></span><h1><span id="分布式锁">分布式锁</span></h1><h3><span id="基于数据库的cas乐观锁">基于数据库的CAS乐观锁</span></h3><p>  更新数据的时候带上指定版本号，如果被其他线程提前更新的版本号，则此次更新失败，缺点对数据库表侵入较大，每个表需要增加version字段，高并发下存在很多更新失败。</p><h3><span id="通过redis实现">通过redis实现</span></h3><p>  使用命令 <code>SET key value NX PX milliseconds</code> </p><p>缺点:</p><ul><li>获取锁是非阻塞</li><li>非公平锁，不支持需要公平锁的场景</li><li>redis主从存在延迟，在master宕机发生主从切换时，可能会导致锁失效</li></ul><p>改进：<br>  基于Redlock算法实现分布式锁。 redisson对Redlock算法进行了封装。<br>  <strong>简单来说就是同时向多个节点发送锁定命令，当获取锁时由于是多个节点会有时间差问题。</strong></p><p>  **客户端计算获取锁所花的时间，只有当客户端在大多数master节点上成功获取了锁，而且总共消耗的时间不超过锁释放时间，这个锁就认为是获取成功了 **</p><h3><span id="基于zookeeper实现分布式锁">基于zookeeper实现分布式锁</span></h3>]]></content>
     
@@ -71,11 +91,11 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="https://reiner.host/posts/0.html"/>
-    <id>https://reiner.host/posts/0.html</id>
+    <title>SpringBoot定时任务Scheduled动态修改Cron执行时间</title>
+    <link href="https://reiner.host/posts/1230.html"/>
+    <id>https://reiner.host/posts/1230.html</id>
     <published>2024-03-12T04:16:59.833Z</published>
-    <updated>2024-03-12T04:17:57.218Z</updated>
+    <updated>2024-07-22T05:57:35.742Z</updated>
     
     <content type="html"><![CDATA[<h1><span id="场景">场景</span></h1><p>  当某些简单的定时任务需要通过后台修改执行时间时，通过spring boot自带的定时任务来实现是个不错的选择。</p><h1><span id="代码实现">代码实现</span></h1><h3><span id="创建定时任务类">创建定时任务类</span></h3><p> 需要实现<code>SchedulingConfigurer</code>接口</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Scheduled</span> <span class="keyword">implements</span> <span class="title">SchedulingConfigurer</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String cron;</span><br><span class="line">    TaskScheduler taskScheduler;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">CronMapper cronMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TaskScheduler <span class="title">taskScheduler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ThreadPoolTaskScheduler scheduler = <span class="keyword">new</span> ThreadPoolTaskScheduler();</span><br><span class="line">        scheduler.setPoolSize(<span class="number">30</span>);</span><br><span class="line">        scheduler.setThreadNamePrefix(<span class="string">&quot;TaskScheduler-&quot;</span>);</span><br><span class="line">        scheduler.initialize();</span><br><span class="line">        <span class="keyword">return</span> scheduler;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureTasks</span><span class="params">(ScheduledTaskRegistrar taskRegistrar)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.taskRegistrar=taskRegistrar;</span><br><span class="line"><span class="keyword">this</span>.taskScheduler=taskScheduler();</span><br><span class="line">scheduleTask();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scheduleTask</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> taskScheduler.schedule(<span class="keyword">this</span>.task, triggerContext -&gt; &#123;</span><br><span class="line">             <span class="comment">//从数据库获取执行周期</span></span><br><span class="line">             <span class="keyword">if</span>(!StringUtils.hasText(<span class="keyword">this</span>.cron)) &#123;</span><br><span class="line">             Cron c = cronMapper.selectById(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">             <span class="comment">//如果为空设置默认</span></span><br><span class="line">             <span class="keyword">if</span>(c==<span class="keyword">null</span>) &#123;</span><br><span class="line">             c=<span class="keyword">new</span> Cron();</span><br><span class="line">                 c.setCronId(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">                 c.setCron(<span class="string">&quot;0 0 0/6 * * ? &quot;</span>);</span><br><span class="line">                 cronMapper.insert(c);</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="keyword">this</span>.cron = c.getCron();</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="comment">//返回执行周期</span></span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">new</span> CronTrigger(<span class="keyword">this</span>.cron).nextExecutionTime(triggerContext);</span><br><span class="line">         &#125;);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCron</span><span class="params">(String cron)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.cron = cron;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3><span id="通过接口触发修改执行时间">通过接口触发修改执行时间</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">updateCron</span><span class="params">(String cron)</span></span>&#123;</span><br><span class="line"> <span class="comment">//此处省略修改数据库中的cron 值 </span></span><br><span class="line">     ...</span><br><span class="line"></span><br><span class="line">     <span class="comment">//修改为新的执行时间</span></span><br><span class="line">     scheduled.setCron(cron);</span><br><span class="line">     scheduled.scheduleTask();</span><br><span class="line">     <span class="keyword">return</span> <span class="string">&quot;修改成功&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -690,53 +710,6 @@
     <category term="面试笔记" scheme="https://reiner.host/tags/%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/"/>
     
     <category term="技术笔记" scheme="https://reiner.host/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>生活笔记之懒人食谱</title>
-    <link href="https://reiner.host/posts/5156ccce.html"/>
-    <id>https://reiner.host/posts/5156ccce.html</id>
-    <published>2021-01-20T07:24:32.000Z</published>
-    <updated>2021-12-24T12:18:33.171Z</updated>
-    
-    <content type="html"><![CDATA[<h1><span id="说明">说明</span></h1><p>懒癌末期患者整理出来的几个半小时内就行搞定的菜，不想吃外卖时过来看看菜单，本菜单长期更新。</p><p>顺带说句：外卖是真的不健康，有次吃完肚子疼了一夜，最后去了医院。。。</p><h1><span id="正文">正文</span></h1><h3><span id="1酱香鸡肉饭">1.酱香鸡肉饭</span></h3><p><strong>材料：</strong></p><ul><li><p>带皮鸡肉/鸡翅斩断/鸡腿肉 </p></li><li><p>姜丝 </p></li><li><p>生粉 </p></li><li><p>酱油 </p></li><li><p>玉米油调 </p></li><li><p>香菇 </p></li><li><p>米</p></li></ul><p><em>做法</em></p><p>带皮鸡肉+姜丝+生粉+酱油+玉米油调和。</p><p>把米洗干净，香菇泡开切丝，一起放进电饭煲开煮。</p><p>等到第一次闻到香菇味道的时候就是电饭煲里面的温度到达了沸点，然后就打开电饭煲，把调好的鸡肉丢进去~</p><span id="more"></span><h3><span id="麻婆豆腐酱料">麻婆豆腐酱料</span></h3><p>直接买酱料然后和豆腐一块煮就完事了</p><h3><span id="香菇闷鸡翅">香菇闷鸡翅</span></h3><ul><li><p>1.淘好米；鸡翅（翅中为好）、 泡发的香菇、葱姜蒜适量。</p></li><li><p>2、先把葱姜蒜切碎，香菇切小丁，把鸡翅中洗干净划上几刀，放在盘子里，撒上葱姜蒜和香菇。香菇可以铺在下边，也可洒在上边。再撒上盐，酱油，料酒，稍作搅拌。有耐心就腌制半小时，没耐心直接上锅。</p></li><li><p>3、电饭煲已经淘好米，直接把盘子放在蒸笼上，摁下开关。</p></li></ul><h3><span id="4青椒炒肉">4.青椒炒肉</span></h3><p>洗菜快！</p><h3><span id="5青椒鸡蛋">5.青椒鸡蛋</span></h3><p>同上</p><h3><span id="6香菇肉丸">6.香菇肉丸</span></h3><p>？，这个。。。我忘记了。</p><h3><span id="7烟熏火腿饭">7.烟熏火腿饭</span></h3><p><strong>材料：</strong></p><p>  一杯大米，半颗土豆，半个胡萝卜，一根烟熏火腿，玉米粒和豌豆粒适量 盐，糖，蚝油，生抽，老抽</p><p><em>9【做法】</em></p><ul><li><p>1.大米洗净后放入电饭煲，按比正常水量稍少一点的水量加水</p></li><li><p>2.加入半平勺老抽，一平勺生抽，半平勺蚝油，一丢丢盐，一丢丢糖提味</p></li><li><p>3.土豆胡萝卜切丁后和玉米以及豌豆一起放入电饭煲，我为了省事是直接在超市买的速冻玉米粒和豌豆粒</p></li><li><p>4.将烟熏火腿切片后铺在最上层</p></li><li><p>5.电饭煲定时</p></li></ul><h3><span id="8凉拌黄瓜">8.凉拌黄瓜</span></h3><p>3分钟的事</p><h3><span id="9剁椒皮蛋">9.剁椒皮蛋</span></h3><p>直接剁椒混生皮蛋，味道是很不错，就是有点担心细菌</p><h3><span id="10咖喱饭">10.咖喱饭</span></h3><p>虽然做起来麻烦，但是可以吃三餐。。。</p><h3><span id="11土豆炖肉">11.土豆炖肉</span></h3><p>切菜洗菜快，直接一锅煮，方便。</p><h3><span id="12西红柿鸡蛋面2021-5-25-update">12.西红柿鸡蛋面（2021-5-25 UPDATE）</span></h3><p>我这面和某些面馆的白开水泡面不一样，既方便又好吃。</p><p>材料： 挂面、大蒜、西红柿、任意肉类、鸡蛋、小葱</p><p>做法：面煮好用凉水冲冷放一旁，热锅放油，煎好鸡蛋放一旁，再放入大蒜和肉爆炒，差不多了后放入西红柿炒，然后放适量水，放盐，水沸腾后装碗里，把面倒进去，放葱，大功告成。</p><p>持续更新中…</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;说明&quot;&gt;&lt;a href=&quot;#说明&quot; class=&quot;headerlink&quot; title=&quot;说明&quot;&gt;&lt;/a&gt;说明&lt;/h1&gt;&lt;p&gt;懒癌末期患者整理出来的几个半小时内就行搞定的菜，不想吃外卖时过来看看菜单，本菜单长期更新。&lt;/p&gt;
-&lt;p&gt;顺带说句：外卖是真的不健康，有次吃完肚子疼了一夜，最后去了医院。。。&lt;/p&gt;
-&lt;h1 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h1&gt;&lt;h3 id=&quot;1-酱香鸡肉饭&quot;&gt;&lt;a href=&quot;#1-酱香鸡肉饭&quot; class=&quot;headerlink&quot; title=&quot;1.酱香鸡肉饭&quot;&gt;&lt;/a&gt;1.酱香鸡肉饭&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;材料：&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;带皮鸡肉/鸡翅斩断/鸡腿肉 &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;姜丝 &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;生粉 &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;酱油 &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;玉米油调 &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;香菇 &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;米&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;做法&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;带皮鸡肉+姜丝+生粉+酱油+玉米油调和。&lt;/p&gt;
-&lt;p&gt;把米洗干净，香菇泡开切丝，一起放进电饭煲开煮。&lt;/p&gt;
-&lt;p&gt;等到第一次闻到香菇味道的时候就是电饭煲里面的温度到达了沸点，然后就打开电饭煲，把调好的鸡肉丢进去~&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="其它" scheme="https://reiner.host/categories/%E5%85%B6%E5%AE%83/"/>
-    
-    
-    <category term="杂谈" scheme="https://reiner.host/tags/%E6%9D%82%E8%B0%88/"/>
-    
-    <category term="生活笔记" scheme="https://reiner.host/tags/%E7%94%9F%E6%B4%BB%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="食谱" scheme="https://reiner.host/tags/%E9%A3%9F%E8%B0%B1/"/>
     
   </entry>
   
