@@ -49,10 +49,10 @@
   
   <entry>
     <title>记caddy2报:no cipher suite supported by both client and server</title>
-    <link href="https://reiner.host/posts/caddy2-no-cipher-suite-supported.html"/>
-    <id>https://reiner.host/posts/caddy2-no-cipher-suite-supported.html</id>
+    <link href="https://reiner.host/posts/850289f1.html"/>
+    <id>https://reiner.host/posts/850289f1.html</id>
     <published>2024-07-22T05:50:54.000Z</published>
-    <updated>2024-12-17T12:55:30.093Z</updated>
+    <updated>2024-12-17T12:59:22.019Z</updated>
     
     <content type="html"><![CDATA[<h1><span id="描述">描述</span></h1><p>配置好域名转发后发现依旧无法访问，使用<code>service caddy status</code> 发现报错： <code>no cipher suite supported by both client and server</code></p><h1><span id="解决">解决</span></h1><p>改成如下配置:</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">site.com &#123;</span><br><span class="line">        reverse_proxy localhost:8080</span><br><span class="line">        tls &#123;</span><br><span class="line">                protocols tls1.2 tls1.2</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>增加 tls协议配置即可</p>]]></content>
     
