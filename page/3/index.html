@@ -292,6 +292,147 @@
             
 
   
+    <article id="post-自用技术笔记（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/posts/8deaf922.html" target="_blank">自用技术笔记（二）</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/posts/8deaf922.html" class="archive-article-date">
+        <time datetime="2021-01-20T08:12:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-20</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于太长，分成两篇记录，第一篇地址： <a href="/posts/bdfc15fa.html">自自技术笔记（一）</a></p>
+<h2 id="JAVA数据结构相关笔记"><a href="#JAVA数据结构相关笔记" class="headerlink" title="JAVA数据结构相关笔记"></a>JAVA数据结构相关笔记</h2><p>hashmap<br>数组加链表存储，通过hash计算key值直接计算出链表在数组中的下标位置，再通过遍历链表判断hash查找value<br>二叉树其实就是链表的加强版</p>
+<p><strong>Java所有集合类型</strong></p>
+<ul>
+<li>1.ArrayList</li>
+<li>2.LinkedList</li>
+<li>3.Set    只允许一个null，且是无序的</li>
+<li>4.TreeSet  有序的，访问遍历比较快，底层基于TreeMap，TreeSet根据其 compare() 和 compareTo() 的定义进行排序的有序容器。</li>
+<li>5.TreeMap 红黑树数据结构，有序的，非同步</li>
+<li>6.HashSet 散列法，底层基于Hashmap，无序</li>
+<li>7.LinkedHashSet  有序的，底层基于HashMap</li>
+<li>8.HashMap</li>
+<li>9.HashTable</li>
+<li>10.Vector 动态数组，线程安全</li>
+</ul>
+<p><strong>注意:共10个集合类！</strong></p>
+<p><strong>Hashmap扩容机制</strong><br>loadFactor默认0.75，扩容时要满足一下两个条件<br>1、 存放新值的时候当前已有元素的个数必须大于等于阈值<br>2、 存放新值的时候当前存放数据发生hash碰撞（当前key计算的hash值换算出来的数组下标位置已经存在值）<br>扩容时一般成倍扩容，自jdk1.8后引入新机制<br>当hash碰撞的链表长度超过默认的8时自动由链表变为红黑树<br>注意点:如果map触发扩容会重新计算每个数据的位置，所以应尽量避免扩容</p>
+<p><strong>ArrayList和LinkedList</strong></p>
+<ul>
+<li>1.arraylist是动态数组，适合使用下标随机访问，不适合添加删除，因为添加删除要移动数据。</li>
+<li>2.linkedlist是双向链表数据结构，适合添加和删除，不适合通过下标随机访问，因为他是通过移动指针一个一个节点的去遍历</li>
+<li>3.linkedlist插入和删除劲量操作第一个或者最后一个效率最高。</li>
+</ul>
+<p><strong>HashMap和HashTable</strong></p>
+<ul>
+<li>1.hashmap基本上可以代替haahtable了</li>
+<li>2.hashtable是线程安全</li>
+<li>3.hashtable的迭代器不同，当迭代过程中hashtable的值被修改时会报错</li>
+<li>4.HashMap把Hashtable的contains方法去掉了，改成containsValue和containsKey，因为contains方法容易让人引起误解。</li>
+<li>5.Hashtable继承自Dictionary类，而HashMap继承自AbstractMap类。但二者都实现了Map接口。</li>
+</ul>
+    
+    <a class="article-more-a" href="/posts/8deaf922.html#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MYSQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JAVA//" class="article-tag-list-link color5">JAVA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/posts/8deaf922.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-生活笔记之懒人食谱" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1342,116 +1483,6 @@
 
 
   
-    <article id="post-实现树形菜单或分类的方法之一，使用左右值树形数据结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/9340b114.html" target="_blank">实现树形菜单或分类的方法之一，使用左右值树形数据结构（modified preorder tree traversal）实现树形菜单</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/9340b114.html" class="archive-article-date">
-        <time datetime="2020-10-27T07:37:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <div id="content_views" class="htmledit_views">
-                    <p>突然发现自己以前常用的parent_id ,node_id这种简单直观的树形结构设计效率很低，数据量一大，就需要不停迭代寻找节点，于是这几天学习了新的数据结构(modified preorder tree traversal)，在此做下笔记。</p> 
-<p>此数据结构的好处是查询非常快，当网站查询树形数据比修改多时使用此结构会比较好，一般用于电商网站的商品分类，查询仅仅需要判断left&gt; ? right &lt;?这样即可，缺点是修改节点表数据量大时很慢，而且操作复杂一点。</p> 
-<p>
-    附最新更新: <a href="https://reiner.host/posts/cfc5b0c5.html">左右值树形移动节点方法]</a>
-    </p>
-<p><img alt="" src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMwLmNuYmxvZ3MuY29tL2Jsb2cvMzQzNjIzLzIwMTQwOS8xODIyMzU0MzkyNTY2MjkuanBn?x-oss-process=image/format,png"></p> 
-<p>左右值数据结构网上教程很多，不再赘述，总结一下就是：要保持父节点右值比所有子节点的右值大，左节点左值比所有子结点左值小 。</p> 
-<p>直接上代码，上面有注释 ，说明了如何找子节点，如何找父节点、删除节点，同级平移，兄弟节点前插入等（基于postgreSQL数据库）。</p> 
-<p>&nbsp;</p> 
-<h3><a name="t0"></a><a name="t0"></a>表字段</h3> 
-<pre><code class="language-sql hljs"><ol class="hljs-ln"><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="1"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">"public"</span>.<span class="hljs-string">"t_test"</span> (</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="2"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">  <span class="hljs-string">"id"</span> int4 <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">nextval</span>(<span class="hljs-string">'"T_TEST_ID_seq"'</span>::regclass),</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="3"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">  <span class="hljs-string">"name"</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">COLLATE</span> <span class="hljs-string">"pg_catalog"</span>.<span class="hljs-string">"default"</span>,</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="4"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">  <span class="hljs-string">"l"</span> int4,</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="5"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">  <span class="hljs-string">"r"</span> int4,</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="6"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">  <span class="hljs-string">"level"</span> int4,</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="7"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">  <span class="hljs-string">"other"</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">COLLATE</span> <span class="hljs-string">"pg_catalog"</span>.<span class="hljs-string">"default"</span>,</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="8"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">  <span class="hljs-string">"status"</span> int2 <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="9"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">  PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">"id"</span>)</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="10"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">)</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="11"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">;</div></div></li></ol></code><div class="hljs-button {2}" data-title="复制" data-report-click="{&quot;spm&quot;:&quot;1001.2101.3001.4259&quot;}" onclick="hljs.copyCode(event)"></div></pre>
-    
-    <a class="article-more-a" href="/posts/9340b114.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-- 数据结构 -- 算法 -- modified preorder tree traversal -- 左右值树形</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构与算法//" class="article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/9340b114.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
@@ -1772,11 +1803,35 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-- AI -- ChatGPT -- AI智能客服 </a>
+                <a href="javascript:void(0)" class="js-tag color2">-- caddy -- 反向代理 -- nginx </a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-- caddy -- 反向代理 -- nginx </a>
+                <a href="javascript:void(0)" class="js-tag color3">AI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ollama</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">streamlit</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ChatGPT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AI智能客服</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">对话机器人</a>
               </li>
             
             <div class="clearfix"></div>

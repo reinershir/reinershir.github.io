@@ -6,8 +6,8 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://reiner.host">
-  <link rel="canonical" href="https://reiner.host/tags/ai-chatgpt-ai智能客服/"/>
-  <title>Tag: -- AI -- ChatGPT -- AI智能客服  | 夏尔の个人博客</title>
+  <link rel="canonical" href="https://reiner.host/posts/8d748f6c.html"/>
+  <title>使用ollama + streamlit快速构建本地大模型应用 | 夏尔の个人博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
@@ -17,13 +17,20 @@
   <meta name="msvalidate.01" content="2A23871076C32D9FEA46BE743DA8711C" />
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="夏尔の个人博客">
-<meta property="og:url" content="https://reiner.host/tags/AI-ChatGPT-AI%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D/index.html">
+  <meta name="description" content="说明 使用ollama可以很方便的运行本地大模型(包括官方模型和gguf量化模型)，使用streamlit快速构建对话界面。 安装ollama 以linux系统为例 在线安装 在线安装直接按官方命令执行：curl -fsSL https:&#x2F;&#x2F;ollama.com&#x2F;install.sh | sh ，但鉴于国内网络下不动，可以考虑手动安装 手动安装 下载安装包： curl -L https:&#x2F;&#x2F;oll">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用ollama + streamlit快速构建本地大模型应用">
+<meta property="og:url" content="https://reiner.host/posts/8d748f6c.html">
 <meta property="og:site_name" content="夏尔の个人博客">
+<meta property="og:description" content="说明 使用ollama可以很方便的运行本地大模型(包括官方模型和gguf量化模型)，使用streamlit快速构建对话界面。 安装ollama 以linux系统为例 在线安装 在线安装直接按官方命令执行：curl -fsSL https:&#x2F;&#x2F;ollama.com&#x2F;install.sh | sh ，但鉴于国内网络下不动，可以考虑手动安装 手动安装 下载安装包： curl -L https:&#x2F;&#x2F;oll">
 <meta property="og:locale">
+<meta property="article:published_time" content="2024-12-17T09:42:46.000Z">
+<meta property="article:modified_time" content="2024-12-17T12:44:54.439Z">
 <meta property="article:author" content="reiner">
-<meta property="article:tag" content="JAVA BLOGS WEB开发 AIGC">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="ollama">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="streamlit">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="夏尔の个人博客" type="application/atom+xml">
@@ -285,53 +292,131 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-使用ollama-streamlit快速构建本地大模型应用" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/posts/8f0289a1.html" class="archive-article-date">
-        <time datetime="2023-06-14T12:04:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-14</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/posts/8f0289a1.html" target="_blank">Implementing AI customer service based on Langchain</a>
   
+    <h1 class="article-title" itemprop="name">
+      使用ollama + streamlit快速构建本地大模型应用
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/posts/8d748f6c.html" class="archive-article-date">
+        <time datetime="2024-12-17T09:42:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-12-17</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">920字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">4分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1><span id="说明">说明</span></h1><p> 使用ollama可以很方便的运行本地大模型(包括官方模型和gguf量化模型)，使用streamlit快速构建对话界面。</p>
+<h1><span id="安装ollama">安装ollama</span></h1><p> 以linux系统为例</p>
+<h2><span id="在线安装">在线安装</span></h2><p> 在线安装直接按官方命令执行：<code>curl -fsSL https://ollama.com/install.sh | sh</code> ，但鉴于国内网络下不动，可以考虑手动安装</p>
+<h2><span id="手动安装">手动安装</span></h2><p> 下载安装包： <code>curl -L https://ollama.com/download/ollama-linux-amd64.tgz -o ollama-linux-amd64.tgz</code><br> 解压： <code>sudo tar -C /usr -xzf ollama-linux-amd64.tgz</code><br> 运行服务： <code>ollama serve</code></p>
+<h1><span id="下载模型文件">下载模型文件</span></h1><p>此处使用modelscope下载qwen的gguf量化模型</p>
+<p>安装modelscope下载工具:<code>pip install -U modelscope</code>  </p>
+<p>下载模型文件： <code>modelscope download --model=Qwen/Qwen2.5-Coder-32B-Instruct-GGUF --include &quot;qwen2.5-coder-32b-instruct-q5_k_m*.gguf&quot; --local_dir . </code></p>
+<h1><span id="创建modelfile">创建ModelFile</span></h1><p>  ModelFile用于ollama构建本地模型，示例如下：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">FROM .&#x2F;QwQ-32B-Preview-GGUF&#x2F;qwen2.5-coder-32b-instruct-q5_k_m.gguf</span><br><span class="line"># sets the temperature to 1 [higher is more creative, lower is more coherent]</span><br><span class="line">PARAMETER temperature 1</span><br><span class="line"># sets the context window size to 4096, this controls how many tokens the LLM can use as context to generate the next token</span><br><span class="line">PARAMETER num_ctx 4096</span><br><span class="line"></span><br><span class="line"># sets a custom system message to specify the behavior of the chat assistant</span><br><span class="line">SYSTEM You are Mario from super mario bros, acting as an assistant.</span><br></pre></td></tr></table></figure><br>其中FROM为本地大模型的路径</p>
+<h1><span id="构建ollama本地大模型">构建ollama本地大模型</span></h1><p>执行:<code>ollama create mymodel -f ./Modelfile</code>  名字可以随便起，Modelfile为刚才创建的Modelfile文件路径。</p>
+<p>创建完成后运行： <code>ollama run mymodel</code> </p>
+<h1><span id="编写streamlit页面并与ollama对接">编写streamlit页面并与ollama对接</span></h1><h2><span id="依赖">依赖</span></h2><p>需要安装的依赖如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install transformers</span><br><span class="line">pip install ctransformers</span><br><span class="line">pip install streamlit</span><br><span class="line">pip install torch</span><br></pre></td></tr></table></figure>
+<p>如无法运行可能需要安装torch cuda环境，具体安装此处省略。</p>
+<h2><span id="编写python代码">编写python代码</span></h2><p>创建<code>main.py</code>编写如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> AutoTokenizer</span><br><span class="line"><span class="keyword">from</span> ctransformers <span class="keyword">import</span> AutoModelForCausalLM</span><br><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> TextStreamer</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">logger = logging.getLogger(__name__)</span><br><span class="line">logging.basicConfig(</span><br><span class="line">    level=logging.INFO,</span><br><span class="line">    <span class="built_in">format</span>=<span class="string">&#x27;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#x27;</span>,</span><br><span class="line">    handlers=[</span><br><span class="line">        logging.StreamHandler(),  <span class="comment"># 输出到控制台</span></span><br><span class="line">        logging.FileHandler(<span class="string">&#x27;qwen-chat-gguf.log&#x27;</span>)  <span class="comment"># 输出到文件</span></span><br><span class="line">    ]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> streamlit <span class="keyword">as</span> st</span><br><span class="line">st.set_page_config(</span><br><span class="line">    page_title=<span class="string">&quot;MY AI&quot;</span>,</span><br><span class="line">    page_icon=<span class="string">&quot;🤖&quot;</span>  </span><br><span class="line">)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">AI对话模块，支持流式输出 </span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QwenChat</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.api_base = <span class="string">&quot;http://localhost:11434&quot;</span>  <span class="comment"># Ollama默认地址</span></span><br><span class="line">        self.model = <span class="string">&quot;mymodel&quot;</span>  <span class="comment"># 使用的模型名称</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">stream_chat</span>(<span class="params">self, prompt,history=<span class="literal">None</span></span>):</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 构建API请求</span></span><br><span class="line">        url = <span class="string">f&quot;<span class="subst">&#123;self.api_base&#125;</span>/api/generate&quot;</span></span><br><span class="line">        headers = &#123;</span><br><span class="line">            <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&quot;model&quot;</span>: self.model,</span><br><span class="line">            <span class="string">&quot;prompt&quot;</span>: prompt,</span><br><span class="line">            <span class="string">&quot;stream&quot;</span>: <span class="literal">True</span>,</span><br><span class="line">            <span class="string">&quot;system&quot;</span>: <span class="string">&quot;你是AI助手&quot;</span>,</span><br><span class="line">            <span class="string">&quot;messages&quot;</span>: history</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># 发送流式请求</span></span><br><span class="line">            response = requests.post(url, headers=headers, json=data, stream=<span class="literal">True</span>)</span><br><span class="line">            response.raise_for_status()</span><br><span class="line">            <span class="keyword">return</span> response</span><br><span class="line">                        </span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            logger.error(<span class="string">f&quot;调用Ollama API时发生错误: <span class="subst">&#123;<span class="built_in">str</span>(e)&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">raise</span> e</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="meta">@st.cache_resource</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_qwen_chat_instance</span>():</span></span><br><span class="line">    <span class="keyword">return</span> QwenChat()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">        torch.cuda.empty_cache()</span><br><span class="line">     <span class="comment"># 创建 QwenChat 实例</span></span><br><span class="line">    <span class="comment"># 使用共享的 QwenChat 实例</span></span><br><span class="line">    qwen_chat = get_qwen_chat_instance()</span><br><span class="line">    </span><br><span class="line">    st.title(<span class="string">&quot;AI助手&quot;</span>)</span><br><span class="line">    st.write(<span class="string">&quot;请问有什么可以帮您的？&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 初始化对话历史</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;messages&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> st.session_state:</span><br><span class="line">        st.session_state.messages = []</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 显示历史对话</span></span><br><span class="line">    <span class="keyword">for</span> message <span class="keyword">in</span> st.session_state.messages:</span><br><span class="line">        <span class="keyword">with</span> st.chat_message(message[<span class="string">&quot;role&quot;</span>]):</span><br><span class="line">            st.markdown(message[<span class="string">&quot;content&quot;</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 用户输入</span></span><br><span class="line">    <span class="keyword">if</span> prompt := st.chat_input(<span class="string">&quot;请输入您的问题&quot;</span>):</span><br><span class="line">        <span class="comment"># 显示用户问题</span></span><br><span class="line">        <span class="keyword">with</span> st.chat_message(<span class="string">&quot;user&quot;</span>):</span><br><span class="line">            st.markdown(prompt)</span><br><span class="line">        st.session_state.messages.append(&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: prompt&#125;)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 显示AI回答</span></span><br><span class="line">        <span class="keyword">with</span> st.chat_message(<span class="string">&quot;assistant&quot;</span>):</span><br><span class="line">            message_placeholder = st.empty()</span><br><span class="line">            full_response = <span class="string">&quot;&quot;</span></span><br><span class="line">            </span><br><span class="line">            full_text = <span class="string">&quot;&quot;</span></span><br><span class="line">            <span class="comment"># 获取历史消息（不包括最新的用户消息）</span></span><br><span class="line">            history = st.session_state.messages[:<span class="number">-1</span>] <span class="keyword">if</span> <span class="built_in">len</span>(st.session_state.messages) &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line">            response = qwen_chat.stream_chat(prompt, history)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> response.iter_lines():</span><br><span class="line">                <span class="keyword">if</span> line:</span><br><span class="line">                    <span class="comment"># 解析JSON响应</span></span><br><span class="line">                    chunk = json.loads(line)</span><br><span class="line">                    <span class="keyword">if</span> <span class="string">&quot;response&quot;</span> <span class="keyword">in</span> chunk:</span><br><span class="line">                        text_chunk = chunk[<span class="string">&quot;response&quot;</span>]</span><br><span class="line">                        <span class="comment"># print(text_chunk)</span></span><br><span class="line">                        full_text += text_chunk</span><br><span class="line">                        <span class="comment"># 更新ui</span></span><br><span class="line">                        message_placeholder.markdown(full_text + <span class="string">&quot;▌&quot;</span>)</span><br><span class="line">                    </span><br><span class="line">                    <span class="comment"># 如果生成结束,退出循环    </span></span><br><span class="line">                    <span class="keyword">if</span> chunk.get(<span class="string">&quot;done&quot;</span>, <span class="literal">False</span>):</span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 更新最终响应</span></span><br><span class="line">            message_placeholder.markdown(full_text)</span><br><span class="line">            </span><br><span class="line">            st.session_state.messages.append(&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;assistant&quot;</span>, <span class="string">&quot;content&quot;</span>: full_text&#125;)</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+
+<p>最终运行启动命令： <code>streamlit run main.py</code></p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          reiner
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://reiner.host/posts/8d748f6c.html" title="使用ollama + streamlit快速构建本地大模型应用" target="_blank">https://reiner.host/posts/8d748f6c.html</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          转载请注明出处，并附上原文链接
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">-- AI -- ChatGPT -- AI智能客服 </a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AI</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ollama</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">streamlit</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -344,17 +429,141 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://reiner.host/posts/8d748f6c.html" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/posts/undefined.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">记caddy2报:no cipher suite supported by both client and server</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">安装ollama</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.1.</span> <span class="toc-text">在线安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.2.</span> <span class="toc-text">手动安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">下载模型文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">创建ModelFile</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">构建ollama本地大模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">编写streamlit页面并与ollama对接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">6.1.</span> <span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">6.2.</span> <span class="toc-text">编写python代码</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+  
+  <div id="gitment-ctn"></div>
+  
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
+  
+  <script>
+    <!-- id: "使用ollama + streamlit快速构建本地大模型应用" -->
+    var gitment = new Gitment({
+      id: "20241217174246",
+      owner: 'reinershir',
+      repo: 'reinershir.github.io',
+      oauth: {
+        client_id: 'f3849a4d7ee918d7da99',
+        client_secret: 'd2f2e0b00608238f5cfbb62e016fc0be1f4a70fc',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
+  
+
 
 
           </div>
@@ -395,9 +604,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
@@ -670,11 +879,35 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-- AI -- ChatGPT -- AI智能客服 </a>
+                <a href="javascript:void(0)" class="js-tag color2">-- caddy -- 反向代理 -- nginx </a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-- caddy -- 反向代理 -- nginx </a>
+                <a href="javascript:void(0)" class="js-tag color3">AI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ollama</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">streamlit</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ChatGPT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AI智能客服</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">对话机器人</a>
               </li>
             
             <div class="clearfix"></div>

@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://reiner.host">
   <link rel="canonical" href="https://reiner.host/posts/undefined.html"/>
-  <title>Enable AI to have internet access - Google search integrated langchain | 夏尔の个人博客</title>
+  <title>记caddy2报:no cipher suite supported by both client and server | 夏尔の个人博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
@@ -17,17 +17,17 @@
   <meta name="msvalidate.01" content="2A23871076C32D9FEA46BE743DA8711C" />
   
   
-  <meta name="description" content="Basic dependency python 3.1.12 +  langchain 0.1.12 +  SERPAPI_API_KEY OPEN_AI_API_KEY  SERPAPI_API_KEY get from https:&#x2F;&#x2F;serpapi.com&#x2F; Install the following dependencies: 123456pip install langchainpip">
+  <meta name="description" content="描述配置好域名转发后发现依旧无法访问，使用service caddy status 发现报错： no cipher suite supported by both client and server 解决改成如下配置: 12345678site.com &amp;#123;        reverse_proxy localhost:8080        tls &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Enable AI to have internet access - Google search integrated langchain">
+<meta property="og:title" content="记caddy2报:no cipher suite supported by both client and server">
 <meta property="og:url" content="https://reiner.host/posts/undefined.html">
 <meta property="og:site_name" content="夏尔の个人博客">
-<meta property="og:description" content="Basic dependency python 3.1.12 +  langchain 0.1.12 +  SERPAPI_API_KEY OPEN_AI_API_KEY  SERPAPI_API_KEY get from https:&#x2F;&#x2F;serpapi.com&#x2F; Install the following dependencies: 123456pip install langchainpip">
+<meta property="og:description" content="描述配置好域名转发后发现依旧无法访问，使用service caddy status 发现报错： no cipher suite supported by both client and server 解决改成如下配置: 12345678site.com &amp;#123;        reverse_proxy localhost:8080        tls &amp;#123;">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-04-20T04:19:29.000Z">
-<meta property="article:modified_time" content="2024-07-22T05:50:09.757Z">
+<meta property="article:published_time" content="2024-07-22T05:50:54.000Z">
+<meta property="article:modified_time" content="2024-07-22T05:54:13.781Z">
 <meta property="article:author" content="reiner">
-<meta property="article:tag" content="-- AI -- ChatGPT -- 对话机器人 ">
+<meta property="article:tag" content="JAVA BLOGS WEB开发 AIGC">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="夏尔の个人博客" type="application/atom+xml">
@@ -289,14 +289,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="Enable AI to have internet access - Google search integrated langchain-langchain" class="article article-type-Enable AI to have internet access - Google search integrated langchain " itemscope itemprop="blogPost">
+            <article id="记caddy2报:no cipher suite supported by both client and server-cadd2 no cipher suite supported by both client and server" class="article article-type-记caddy2报:no cipher suite supported by both client and server " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      Enable AI to have internet access - Google search integrated langchain
+      记caddy2报:no cipher suite supported by both client and server
     </h1>
   
 
@@ -309,7 +309,7 @@
         </span>
 
 <a href="/posts/undefined.html" class="archive-article-date">
-        <time datetime="2024-04-20T04:19:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-20</time>
+        <time datetime="2024-07-22T05:50:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-22</time>
 </a>
 
   
@@ -322,7 +322,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">265字</span>
+      <span class="post-count">68字</span>
     </span>
   </span>
 
@@ -342,19 +342,10 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1><span id="basic-dependency">Basic dependency</span></h1><ul>
-<li>python 3.1.12 + </li>
-<li>langchain 0.1.12 + </li>
-<li>SERPAPI_API_KEY</li>
-<li>OPEN_AI_API_KEY</li>
-</ul>
-<p>SERPAPI_API_KEY get from <a target="_blank" rel="noopener" href="https://serpapi.com/">https://serpapi.com/</a></p>
-<p>Install the following dependencies:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pip install langchain</span><br><span class="line">pip install pymupdf</span><br><span class="line">pip install openai</span><br><span class="line">pip install --upgrade --quiet  langchain langchain-community langchainhub langchain-openai chromadb bs4</span><br><span class="line">pip install --upgrade langchain-openai tiktoken chromadb langchain</span><br><span class="line">pip install fake_useragent</span><br></pre></td></tr></table></figure>
-
-<h1><span id="get-start">Get start</span></h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># set the api key</span></span><br><span class="line">os.environ[<span class="string">&quot;SERPAPI_API_KEY&quot;</span>] = <span class="string">&#x27;003dc0d2d9e0dc818aa2b497342346dfgdf799af1849c5d1249d34dd7&#x27;</span></span><br><span class="line">openai.api_key=<span class="string">&quot;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&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> langchain_core.prompts <span class="keyword">import</span> ChatPromptTemplate, MessagesPlaceholder</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ChatMessageHistory</span><br><span class="line"><span class="keyword">from</span> langchain_text_splitters <span class="keyword">import</span> RecursiveCharacterTextSplitter</span><br><span class="line"><span class="keyword">from</span> langchain_community.vectorstores <span class="keyword">import</span> Chroma</span><br><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> OpenAIEmbeddings</span><br><span class="line"></span><br><span class="line"><span class="comment"># build tool agent</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> langchain_community.utilities <span class="keyword">import</span> SerpAPIWrapper</span><br><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> create_openai_tools_agent</span><br><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> AgentExecutor,Tool</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferWindowMemory</span><br><span class="line"></span><br><span class="line">chat = ChatOpenAI(model=<span class="string">&quot;gpt-3.5-turbo-1106&quot;</span>,streaming=<span class="literal">True</span>,max_tokens=<span class="number">4090</span>,max_retries=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 加载 serpapi 工具</span></span><br><span class="line">search = SerpAPIWrapper()</span><br><span class="line"></span><br><span class="line">tools = [Tool(</span><br><span class="line">    name=<span class="string">&quot;google_search&quot;</span>,</span><br><span class="line">    description=<span class="string">&quot;Search Google for recent results.&quot;</span>,</span><br><span class="line">    func=search.run,</span><br><span class="line">    max_results=<span class="number">1</span>,</span><br><span class="line">    max_iterations=<span class="number">2</span>,</span><br><span class="line">    max_retries=<span class="number">2</span>,</span><br><span class="line">    max_consecutive_errors=<span class="number">2</span>,</span><br><span class="line">    max_tokens=<span class="number">2000</span>, <span class="comment">#must</span></span><br><span class="line">    return_direct=<span class="literal">False</span></span><br><span class="line">)]</span><br><span class="line"></span><br><span class="line">prompt = ChatPromptTemplate.from_messages(</span><br><span class="line">    [</span><br><span class="line">        (</span><br><span class="line">            <span class="string">&quot;system&quot;</span>,</span><br><span class="line">            <span class="string">&quot;You are a helpful assistant. You may not need to use tools for every query - the user may just want to chat!&quot;</span>,</span><br><span class="line">        ),</span><br><span class="line">         (<span class="string">&quot;user&quot;</span>, <span class="string">&quot;&#123;input&#125;&quot;</span>),</span><br><span class="line">         MessagesPlaceholder(variable_name=<span class="string">&quot;agent_scratchpad&quot;</span>),</span><br><span class="line">    ]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">memory = ConversationBufferWindowMemory(k=<span class="number">2</span>, return_messages=<span class="literal">True</span>)</span><br><span class="line">agent = create_openai_tools_agent(tools = tools,llm = chat,prompt=prompt)</span><br><span class="line">agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=<span class="literal">True</span>,max_iterations=<span class="number">2</span>,memory=memory)</span><br><span class="line">response = agent_executor.invoke(&#123;<span class="string">&quot;input&quot;</span>: <span class="string">&#x27;Who is the current President of the United States?&#x27;</span>&#125;)</span><br><span class="line">print(response)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>Now AI can first use Google search and then answer your questions.</p>
+    <h1><span id="描述">描述</span></h1><p>配置好域名转发后发现依旧无法访问，使用<code>service caddy status</code> 发现报错： <code>no cipher suite supported by both client and server</code></p>
+<h1><span id="解决">解决</span></h1><p>改成如下配置:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">site.com &#123;</span><br><span class="line">        reverse_proxy localhost:8080</span><br><span class="line">        tls &#123;</span><br><span class="line">                protocols tls1.2 tls1.2</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>增加 tls协议配置即可</p>
 
     
 
@@ -369,7 +360,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://reiner.host/posts/undefined.html" title="Enable AI to have internet access - Google search integrated langchain" target="_blank">https://reiner.host/posts/undefined.html</a>
+          <a href="https://reiner.host/posts/undefined.html" title="记caddy2报:no cipher suite supported by both client and server" target="_blank">https://reiner.host/posts/undefined.html</a>
         </li>
         
         <li>
@@ -386,29 +377,7 @@
   <div class="article-info article-info-index">
     
     
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-- AI -- ChatGPT -- 对话机器人 </a>
-        		</li>
-      		
-		</ul>
-	</div>
-
     
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/AI//" class="article-tag-list-link color3">AI</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
     
 
@@ -473,18 +442,18 @@
 
 <nav id="article-nav">
   
-    <a href="/posts/undefined.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/posts/8d748f6c.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          记caddy2报:no cipher suite supported by both client and server
+          使用ollama + streamlit快速构建本地大模型应用
         
       </div>
     </a>
   
   
-    <a href="/posts/4320.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">分布式常见面试笔记</div>
+    <a href="/posts/12306.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Enable AI to have internet access - Google search integrated langchain</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -511,7 +480,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Basic dependency</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Get start</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">解决</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -538,9 +507,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "Enable AI to have internet access - Google search integrated langchain" -->
+    <!-- id: "记caddy2报:no cipher suite supported by both client and server" -->
     var gitment = new Gitment({
-      id: "20240420121929",
+      id: "20240722135054",
       owner: 'reinershir',
       repo: 'reinershir.github.io',
       oauth: {
@@ -869,11 +838,35 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-- AI -- ChatGPT -- AI智能客服 </a>
+                <a href="javascript:void(0)" class="js-tag color2">-- caddy -- 反向代理 -- nginx </a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-- caddy -- 反向代理 -- nginx </a>
+                <a href="javascript:void(0)" class="js-tag color3">AI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ollama</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">streamlit</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ChatGPT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AI智能客服</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">对话机器人</a>
               </li>
             
             <div class="clearfix"></div>
