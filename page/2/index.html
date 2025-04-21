@@ -292,6 +292,145 @@
             
 
   
+    <article id="post-使用jenkins-docker-compose实现springboot与vue3项目自动化部署" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/posts/12ac9414.html" target="_blank">使用jenkins+docker-compose实现springboot与vue3项目自动化部署</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/posts/12ac9414.html" class="archive-article-date">
+        <time datetime="2023-03-09T12:03:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-09</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前面使用Jenkins+docker+shell脚本可以方便的实现单体应用部署，但如果是微服务架构，工程包较多，若是为每一个服务都建一个Jenkins job 会变得很繁琐，这个时候就需要用到docker-compose 容器编排工具，它可以只需一行命令就能帮我们完成多个服务的构建、推送、重启。</p>
+<p>  考虑到如果有多个服务需要部署到多台服务器，如果每台服务器都采用发送jar包再构建镜像的方式会产生许多重复工作，因此这种情况应该使用jenkins构建镜像-&gt;推送到私库-&gt;服务器拉取-&gt;docker-compose启动 如此流程来完成部署。</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>需要安装如下软件：</p>
+<ol>
+<li><p>Jenkins （包括git/svn、publish over ssh 这个插件，jenkins安装教程很多此处不再赘述）</p>
+</li>
+<li><p>docker </p>
+</li>
+<li><p>Node JS (可选，仅部署前端vue项目时需要安装)</p>
+</li>
+<li><p>docker compose </p>
+</li>
+</ol>
+<p><strong>准备工作指路：</strong></p>
+<p>jenkins:  <a target="_blank" rel="noopener" href="https://www.jenkins.io/download/">https://www.jenkins.io/download/</a>  直接启动war包或者使用docker安装</p>
+<p>docker: <a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/install/linux-install/">Install Docker Desktop on Linux</a>  </p>
+<p>Node Js:<a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a> </p>
+<p>docker compose:  <a target="_blank" rel="noopener" href="https://github.com/docker/compose">GitHub - docker/compose: Define and run multi-container applications with Docker</a>  </p>
+<p>或者直接使用curl下载安装，以CentOs为例执行如下代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1、下载docker-compose</span><br><span class="line">sudo curl -L <span class="string">&quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-<span class="subst">$(uname -s)</span>-<span class="subst">$(uname -m)</span>&quot;</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"></span><br><span class="line">2、增加可执行权限</span><br><span class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"></span><br><span class="line">3、添加软链接</span><br><span class="line">sudo ln -s /usr/<span class="built_in">local</span>/bin/docker-compose /usr/bin/docker-compose</span><br><span class="line"></span><br><span class="line">4、确认版本</span><br><span class="line">$ docker-compose --version</span><br><span class="line"></span><br><span class="line">sudo curl \</span><br><span class="line">    -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/bash/docker-compose \</span><br><span class="line">    -o /etc/bash_completion.d/docker-compose</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="安装docker私库"><a href="#安装docker私库" class="headerlink" title="安装docker私库"></a>安装docker私库</h1><p>为了使服务一次打包多次部署，需要安装docker私库来保存镜像</p>
+<p>首先建好映射目录的文件夹：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data/registry</span><br></pre></td></tr></table></figure>
+
+<p>执行docker命令启动私库镜像：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -itd -v /data/registry:/var/lib/registry -p 5000:5000 --restart=always --name registry registry:latest　</span></span><br></pre></td></tr></table></figure>
+
+<p>添加docker配置：</p>
+<p>注意：如果是通过内网访问就配内网IP否则 配公网IP</p>
+<p><code>vi /etc/docker/daemon.json</code><br>添加如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;insecure-registries&quot;: [&quot;192.168.2.200:5000&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>如果需要设置账号密码：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> --rm --entrypoint htpasswd  httpd:2 -Bbn yourUserName yourPwd &gt;&gt; ./auth/htpasswd  </span></span><br></pre></td></tr></table></figure>
+
+<p>一般在内网环境部署私库，拉取推送也是全程内网，所以可装可不装</p>
+<p>默认私库无法删除镜像，执行如下命令添加配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it registry /bin/sh</span><br><span class="line">cd /etc/docker/registry</span><br><span class="line">vi config.yml</span><br><span class="line">加入</span><br><span class="line">  delete:                                                                                                                                                                          </span><br><span class="line">    # To allow image delete                                                                                                                                                        </span><br><span class="line">    enabled: true </span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" href="/posts/12ac9414.html#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-- 运维 -- jenkins -- 自动化部署 -- docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/运维//" class="article-tag-list-link color3">运维</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/posts/12ac9414.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JVM知识体系整合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1290,135 +1429,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/posts/94ca3821.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-OculusQuest2激活教程（无需智能路由器）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/397a07c0.html" target="_blank">OculusQuest2激活教程（无需智能路由器）</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/397a07c0.html" class="archive-article-date">
-        <time datetime="2021-03-19T06:17:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近上AMAZON买个台Oculus Quest2玩玩，前前后后折腾了整整一个星期才终于搞定激活问题！因此这在里写下记录希望后来的网友们少走弯路。</p>
-<p>找了下网上的教程发现需要借助智能路由器，而我平时不怎么需要这个东西，就为了激活而买个路由器也不划算，因此我选择了笔记本共享热点的方式。</p>
-<p><strong>说道Oculus quest2 我想先简单的评测下，先说说它的优点：</strong></p>
-<ul>
-<li><p>支持透视，找手柄时不用摘下头盔了</p>
-</li>
-<li><p>支持手势操作，简单的操作无需手柄了</p>
-</li>
-<li><p>最大的优势—–&gt;没有乱七八糟的线！比如PSVR就要插一堆线，每次看着这么多线就没有开启的动力了</p>
-</li>
-<li><p>一体机，即可以直接使用又可以WIFI串连电脑玩STEAM VR游戏！</p>
-</li>
-<li><p>AMAZON退税后约只需1900-2000左右（不要上TB买JS的）</p>
-</li>
-</ul>
-<p><strong>再说说它的不足之处：</strong></p>
-<ul>
-<li><p>清晰度和PSVR相差不大，至少我的眼睛感觉没有明显差距</p>
-</li>
-<li><p>头戴的那个带子刮耳朵</p>
-</li>
-<li><p>一会儿要充电了</p>
-</li>
-<li><p>国内用户无法直接使用</p>
-</li>
-</ul>
-<p>总体来说是目前VR里体验最好的了，不用插线实在是方便</p>
-    
-    <a class="article-more-a" href="/posts/397a07c0.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oculus</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">oculusquest2</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/其它//" class="article-tag-list-link color3">其它</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/397a07c0.html">展开全文 >></a>
     </p>
     
 
