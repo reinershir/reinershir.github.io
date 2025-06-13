@@ -292,6 +292,132 @@
             
 
   
+    <article id="post-使用llama-index实现chatGPT智能问答机器人" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/posts/8f0289a0.html" target="_blank">使用llama_index实现chatGPT智能问答机器人</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/posts/8f0289a0.html" class="archive-article-date">
+        <time datetime="2023-05-14T12:04:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-14</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  随着OPENAI开放API接口后，各大厂商的AI如雨后春笋般涌现，如同十年前的互联网大火，未来的风口必然是在AI上。</p>
+<p>当然，基于自训模型/自研AI 门槛过高，不是个人或中小厂能干的，而且即使有也与OPENAI差距不小，因此一般人能卷的也只有应用层了。</p>
+<p>基于此背景，我开始研究基于GPT的自定义数据索引问答机器人，接着我发现了llama_index和langchain这两个框架，在此记录一下它的使用方法。</p>
+<p>llama_index: <a target="_blank" rel="noopener" href="https://github.com/jerryjliu/llama_index">GitHub - jerryjliu/llama_index: LlamaIndex (GPT Index) is a project that provides a central interface to connect your LLM&#39;s with external data.</a></p>
+<p>langchain: <a target="_blank" rel="noopener" href="https://github.com/hwchase17/langchain">GitHub - hwchase17/langchain: ⚡ Building applications with LLMs through composability ⚡</a></p>
+<h1 id="OPENAI模型微调？"><a href="#OPENAI模型微调？" class="headerlink" title="OPENAI模型微调？"></a>OPENAI模型微调？</h1><p>最初我尝试使用OPENAI的模型微调，我试着弄了几百KB的文本数据喂进去，然而发现当我使用微调模型对话时AI的回复总是只言片语连一句完整的句子都无法返回。</p>
+<p>通过搜索资料后我意识到模型微调不是几百或者几兆文本数据就能达到我想要的目地的。</p>
+<p>最终我发现llama_index + langchain可以实现想要的效果</p>
+<h1 id="llama-index-langchian实现智能问答机器人"><a href="#llama-index-langchian实现智能问答机器人" class="headerlink" title="llama_index + langchian实现智能问答机器人"></a>llama_index + langchian实现智能问答机器人</h1><h2 id="step-1-安装环境"><a href="#step-1-安装环境" class="headerlink" title="step 1.安装环境"></a>step 1.安装环境</h2><ul>
+<li><p>安装python3.10以上版本</p>
+</li>
+<li><p>安装依赖库：</p>
+<ol>
+<li><p>pip install llama-index</p>
+</li>
+<li><p>pip install openai</p>
+</li>
+<li><p>pip install langchain</p>
+</li>
+<li><p>pip install pandas</p>
+</li>
+</ol>
+</li>
+<li><p>准备OPENAI的API KEY</p>
+</li>
+</ul>
+<h3 id="step-2-准备数据"><a href="#step-2-准备数据" class="headerlink" title="step 2.准备数据"></a>step 2.准备数据</h3><p>  准备好机器人要回答的资料库，可以有PDF、HTML、WORD文档、SQL、API接口甚至GITHUB、WIKI等网络资源也可以，在本章我将使用简单的TXT文本，举例大概内容如下：</p>
+<p>塞尔达传说：王国之泪什么时候出？      《塞尔达传说：王国之泪》将于2023年5月12日发售哦，敬请期待！ </p>
+    
+    <a class="article-more-a" href="/posts/8f0289a0.html#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-- AI -- ChatGPT -- 对话机器人 </a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/AI//" class="article-tag-list-link color3">AI</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/posts/8f0289a0.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-使用jenkins-docker-compose实现springboot与vue3项目自动化部署" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1339,128 +1465,9 @@
 
 
   
-    <article id="post-使用netty作为TCP服务端并使用16进制与硬件进行通信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/94ca3821.html" target="_blank">使用netty作为TCP服务端并使用16进制与硬件进行通信</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/94ca3821.html" class="archive-article-date">
-        <time datetime="2021-03-22T02:55:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-22</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>本文记录了在使用netty作为TCP服务端的情况下，如何解决TCP粘包、半包问题，以及如何使用16进制与客户端进行通信。</p>
-<h1 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h1><p>首先添加maven依赖：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.netty<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>netty-all<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h3 id="创建字节转换类"><a href="#创建字节转换类" class="headerlink" title="创建字节转换类"></a>创建字节转换类</h3><p>首先创建一个将字节转换为16进制的处理类，并判断包头包尾是否正确。</p>
-    
-    <a class="article-more-a" href="/posts/94ca3821.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">netty</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TCP服务端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TCP粘包</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TCP半包</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">16进制通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JAVA//" class="article-tag-list-link color5">JAVA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/94ca3821.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1807,6 +1814,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">对话机器人</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">flask</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sse</a>
               </li>
             
             <div class="clearfix"></div>

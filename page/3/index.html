@@ -292,6 +292,125 @@
             
 
   
+    <article id="post-使用netty作为TCP服务端并使用16进制与硬件进行通信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/posts/94ca3821.html" target="_blank">使用netty作为TCP服务端并使用16进制与硬件进行通信</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/posts/94ca3821.html" class="archive-article-date">
+        <time datetime="2021-03-22T02:55:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-22</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>本文记录了在使用netty作为TCP服务端的情况下，如何解决TCP粘包、半包问题，以及如何使用16进制与客户端进行通信。</p>
+<h1 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h1><p>首先添加maven依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.netty<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>netty-all<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h3 id="创建字节转换类"><a href="#创建字节转换类" class="headerlink" title="创建字节转换类"></a>创建字节转换类</h3><p>首先创建一个将字节转换为16进制的处理类，并判断包头包尾是否正确。</p>
+    
+    <a class="article-more-a" href="/posts/94ca3821.html#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">netty</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">TCP服务端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TCP粘包</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TCP半包</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">16进制通信</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JAVA//" class="article-tag-list-link color5">JAVA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/posts/94ca3821.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-OculusQuest2激活教程（无需智能路由器）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1404,123 +1523,9 @@
 
 
   
-    <article id="post-cocos2dx自学之使用box2d物理世界" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/4e43340b.html" target="_blank">cocos2dx自学之使用box2d物理世界</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/4e43340b.html" class="archive-article-date">
-        <time datetime="2020-10-27T07:46:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <div id="content_views" class="htmledit_views">
-                    <p>需要引入的头文件</p> 
-<p>#include "cocos2d.h"<br> #include "Box2D\Box2D.h"<br> #include &lt;string&gt;<br> </p> 
-<p><br> </p> 
-<p>创建物理世界</p> 
-<p></p>
-<pre><code class="language-cpp hljs">world = <span class="hljs-keyword">new</span> b2World(b2Vec2(<span class="hljs-number">0</span>,<span class="hljs-number">-10</span>));</code><div class="hljs-button {2}" data-title="复制" data-report-click="{&quot;spm&quot;:&quot;1001.2101.3001.4259&quot;}" onclick="hljs.copyCode(event)"></div></pre>
-<br> 创建会自由掉落的 精灵
-<p></p> 
-<p></p>
-<pre><code class="language-cpp hljs"><ol class="hljs-ln" style="width:1119px"><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="1"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">bird = Sprite::create(<span class="hljs-string">"bird0_0.png"</span>);</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="2"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    bird-&gt;setName(<span class="hljs-string">"bird"</span>);</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="3"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    Size size = bird-&gt;getContentSize();</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="4"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    b2BodyDef def;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="5"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    def.type = b2_dynamicBody;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="6"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    def.position = b2Vec2(screenSize.width / <span class="hljs-number">4</span> / RATIO, screenSize.height / <span class="hljs-number">2</span> / RATIO + <span class="hljs-number">1</span>);<span class="hljs-comment">//鸟的位置</span></div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="7"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    b2PolygonShape shape;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="8"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    shape.SetAsBox(size.width/<span class="hljs-number">2</span>/RATIO,size.height/<span class="hljs-number">2</span>/RATIO); <span class="hljs-comment">//碰撞体积？</span></div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="9"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    b2FixtureDef fixtureDef;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="10"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    fixtureDef.density = <span class="hljs-number">1</span>;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="11"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    fixtureDef.friction = <span class="hljs-number">0.3</span>;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="12"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    fixtureDef.shape = &amp;shape;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="13"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    b2Body *body = world-&gt;CreateBody(&amp;def);</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="14"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    body-&gt;CreateFixture(&amp;fixtureDef);</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="15"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    addChild(bird);</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="16"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    bird-&gt;setPosition(Point(def.position.x*RATIO, def.position.y*RATIO));<span class="hljs-comment">//物理物体会自动往下掉 因此绑定物理物体的位置到sprite上 就形成了物理</span></div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="17"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    body-&gt;SetUserData(bird);<span class="hljs-comment">//与sprite绑定</span></div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="18"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    <span class="hljs-keyword">this</span>-&gt;body = body;</div></div></li></ol></code><div class="hljs-button {2}" data-title="复制" data-report-click="{&quot;spm&quot;:&quot;1001.2101.3001.4259&quot;}" onclick="hljs.copyCode(event)"></div></pre>
-<p></p> 
-<p><br> </p> 必须将精灵与物理盒子绑定才能实现物理效果 &nbsp; 此方法必须每秒执行，不停的将精灵与物理盒子位置绑定 
-<p></p>
-<pre><code class="language-cpp hljs"><ol class="hljs-ln" style="width:1018px"><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="1"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">HelloWorld::bingSprite</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">//让物理盒子和精灵实时绑定来达到物理效果 物理盒子本身是看不到的</span></div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="2"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    Sprite *s;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="3"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    <span class="hljs-keyword">for</span> (b2Body *b = world-&gt;GetBodyList(); b; b = b-&gt;GetNext())&#123;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="4"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">        s = (Sprite*)b-&gt;GetUserData();</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="5"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">        <span class="hljs-keyword">if</span> (b-&gt;GetUserData() &amp;&amp; b-&gt;GetType() == b2_dynamicBody||b-&gt;GetType()==b2_kinematicBody)&#123;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="6"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">            <span class="hljs-keyword">if</span> (s != <span class="hljs-literal">NULL</span>)&#123;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="7"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">                s-&gt;setPosition(b-&gt;GetPosition().x*RATIO, b-&gt;GetPosition().y*RATIO);<span class="hljs-comment">//每次渲染都让sprite与box body保持位置绑定</span></div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="8"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">            &#125;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="9"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">            </div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="10"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">        &#125;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="11"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">    &#125;</div></div></li><li><div class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="12"></div></div><div class="hljs-ln-code"><div class="hljs-ln-line">&#125;</div></div></li></ol></code><div class="hljs-button {2}" data-title="复制" data-report-click="{&quot;spm&quot;:&quot;1001.2101.3001.4259&quot;}" onclick="hljs.copyCode(event)"></div></pre>
-<p></p>
-    
-    <a class="article-more-a" href="/posts/4e43340b.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-- 游戏开发 -- C++ -- COCOS2DX</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/游戏开发//" class="article-tag-list-link color5">游戏开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/4e43340b.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1867,6 +1872,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">对话机器人</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">flask</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sse</a>
               </li>
             
             <div class="clearfix"></div>

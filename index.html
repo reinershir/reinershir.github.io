@@ -292,6 +292,119 @@
             
 
   
+    <article id="post-使用nginx-flask调用SSE流式输出接口报net-ERR-HTTP2-PROTOCOL-ERROR" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/posts/dfb03ccc.html" target="_blank">使用nginx+flask调用SSE流式输出接口报net::ERR_HTTP2_PROTOCOL_ERROR</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/posts/dfb03ccc.html" class="archive-article-date">
+        <time datetime="2025-06-13T06:43:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-06-13</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1><span id="起因">起因</span></h1><p>当我使用flask开发了一个SSE流式输出大模型返回内容的接口，前端调用时返回到一半出现<code>net::ERR_HTTP2_PROTOCOL_ERROR 200 (OK)</code>，排查了一天，各种nginx配置都试过了，无论是强制HTTP1还是设置缓冲大小都不管用。</p>
+<p>最终当我试试关掉gunicorn,直接使用python app.py 运行flask时一切正常了！ </p>
+<h1><span id="解决">解决</span></h1><h3><span id="nginx配置">nginx配置</span></h3><p>首先是nginx要正确配置返回头：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">location &#x2F;system&#x2F; &#123;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;127.0.0.1:8008&#x2F;;</span><br><span class="line">    # 配置支持sse</span><br><span class="line">    proxy_set_header Connection &#39;Keep-Alive&#39;;  </span><br><span class="line">    proxy_set_header Host $http_host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    proxy_set_header Connection &#39;&#39;;</span><br><span class="line">    proxy_http_version 1.1;  # 重要：确保使用HTTP&#x2F;1.1协议</span><br><span class="line">    proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">    proxy_set_header Connection &#39;upgrade&#39;;</span><br><span class="line">    # 添加以下配置以处理SSE</span><br><span class="line">    proxy_buffering off;</span><br><span class="line">    proxy_cache off;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3><span id="其次是gunicorn启动命令">其次是gunicorn启动命令</span></h3><p>Gunicorn 的默认 sync 工作进程不适合长连接，因此使用异步工作进程如 gevent。</p>
+<p>首先：<br><code>pip install gevent</code></p>
+<p>再执行启动命令：<br><code>gunicorn --worker-class gevent --workers 4 --bind 0.0.0.0:8008 your_app:app</code></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">flask</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sse</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/运维//" class="article-tag-list-link color3">运维</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/posts/dfb03ccc.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-AI应用知识点整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -300,7 +413,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/posts/3943ac5e.html" target="_blank">AI应用知识点整理</a>
+	  <a class="article-title" href="/posts/3943ac5e.html" target="_blank">AI应用工程知识点整理</a>
   
     </h1>
   
@@ -1852,135 +1965,9 @@
 
 
   
-    <article id="post-使用llama-index实现chatGPT智能问答机器人" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/8f0289a0.html" target="_blank">使用llama_index实现chatGPT智能问答机器人</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/8f0289a0.html" class="archive-article-date">
-        <time datetime="2023-05-14T12:04:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  随着OPENAI开放API接口后，各大厂商的AI如雨后春笋般涌现，如同十年前的互联网大火，未来的风口必然是在AI上。</p>
-<p>当然，基于自训模型/自研AI 门槛过高，不是个人或中小厂能干的，而且即使有也与OPENAI差距不小，因此一般人能卷的也只有应用层了。</p>
-<p>基于此背景，我开始研究基于GPT的自定义数据索引问答机器人，接着我发现了llama_index和langchain这两个框架，在此记录一下它的使用方法。</p>
-<p>llama_index: <a target="_blank" rel="noopener" href="https://github.com/jerryjliu/llama_index">GitHub - jerryjliu/llama_index: LlamaIndex (GPT Index) is a project that provides a central interface to connect your LLM&#39;s with external data.</a></p>
-<p>langchain: <a target="_blank" rel="noopener" href="https://github.com/hwchase17/langchain">GitHub - hwchase17/langchain: ⚡ Building applications with LLMs through composability ⚡</a></p>
-<h1 id="OPENAI模型微调？"><a href="#OPENAI模型微调？" class="headerlink" title="OPENAI模型微调？"></a>OPENAI模型微调？</h1><p>最初我尝试使用OPENAI的模型微调，我试着弄了几百KB的文本数据喂进去，然而发现当我使用微调模型对话时AI的回复总是只言片语连一句完整的句子都无法返回。</p>
-<p>通过搜索资料后我意识到模型微调不是几百或者几兆文本数据就能达到我想要的目地的。</p>
-<p>最终我发现llama_index + langchain可以实现想要的效果</p>
-<h1 id="llama-index-langchian实现智能问答机器人"><a href="#llama-index-langchian实现智能问答机器人" class="headerlink" title="llama_index + langchian实现智能问答机器人"></a>llama_index + langchian实现智能问答机器人</h1><h2 id="step-1-安装环境"><a href="#step-1-安装环境" class="headerlink" title="step 1.安装环境"></a>step 1.安装环境</h2><ul>
-<li><p>安装python3.10以上版本</p>
-</li>
-<li><p>安装依赖库：</p>
-<ol>
-<li><p>pip install llama-index</p>
-</li>
-<li><p>pip install openai</p>
-</li>
-<li><p>pip install langchain</p>
-</li>
-<li><p>pip install pandas</p>
-</li>
-</ol>
-</li>
-<li><p>准备OPENAI的API KEY</p>
-</li>
-</ul>
-<h3 id="step-2-准备数据"><a href="#step-2-准备数据" class="headerlink" title="step 2.准备数据"></a>step 2.准备数据</h3><p>  准备好机器人要回答的资料库，可以有PDF、HTML、WORD文档、SQL、API接口甚至GITHUB、WIKI等网络资源也可以，在本章我将使用简单的TXT文本，举例大概内容如下：</p>
-<p>塞尔达传说：王国之泪什么时候出？      《塞尔达传说：王国之泪》将于2023年5月12日发售哦，敬请期待！ </p>
-    
-    <a class="article-more-a" href="/posts/8f0289a0.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-- AI -- ChatGPT -- 对话机器人 </a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/AI//" class="article-tag-list-link color3">AI</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/8f0289a0.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -2327,6 +2314,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">对话机器人</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">flask</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sse</a>
               </li>
             
             <div class="clearfix"></div>
