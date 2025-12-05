@@ -292,6 +292,135 @@
             
 
   
+    <article id="post-使用X-AnyLabeling-Ultralytics标注数据训练YOLOV11模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/posts/2a81f883.html" target="_blank">使用X-AnyLabeling+Ultralytics标注数据训练YOLOV11模型</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/posts/2a81f883.html" class="archive-article-date">
+        <time datetime="2025-12-05T01:31:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-12-05</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3><span id="说明">说明</span></h3><p>此文章用于记录训练</p>
+<h3><span id="安装x-anylabeling">安装X-Anylabeling</span></h3><p>git clone <a target="_blank" rel="noopener" href="https://github.com/CVHub520/X-AnyLabeling">https://github.com/CVHub520/X-AnyLabeling</a> ,或者直接下载Releases版的EXE直接运行。</p>
+<h3><span id="安装ultralytics">安装Ultralytics</span></h3><p><code>pip install -U ultralytics</code> </p>
+<p>别忘了安装<strong>PyTorch</strong></p>
+<p><img src="C:\Users\Shir\AppData\Roaming\marktext\images\2025-11-27-14-53-55-image.png"></p>
+<h3><span id="使用x-anylabeling标注图片">使用X-AnyLabeling标注图片</span></h3><p>打开X-AnyLabeling并使用图形界面的标注工具，标注完毕后会针对每张图片生成对应的json数据。</p>
+<p>接下来<strong>导出classes.txt</strong> ，步骤为点击工具-总览-导出，将导出后的压缩包解压可得classes.txt</p>
+<h3><span id="使用代码将标注数据转换为yolov8-dataset数据集">使用代码将标注数据转换为yolov8 dataset数据集</span></h3><p>X-AnyLabeling标注的数据为Json格式，无法直接用于训练，运行以下代码将数据转换成训练数据集：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># convert_xanylabeling_to_yolo_final.py</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 支持的图片格式</span></span><br><span class="line">IMG_EXTENSIONS = &#123;<span class="string">&#x27;.jpg&#x27;</span>, <span class="string">&#x27;.jpeg&#x27;</span>, <span class="string">&#x27;.png&#x27;</span>, <span class="string">&#x27;.bmp&#x27;</span>, <span class="string">&#x27;.tiff&#x27;</span>, <span class="string">&#x27;.webp&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert_single_json</span>(<span class="params">json_path, img_dir, label_dir, name2id</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;转换单个JSON为YOLO txt格式&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(json_path, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        data = json.load(f)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 获取图片路径</span></span><br><span class="line">    img_name = data.get(<span class="string">&quot;imagePath&quot;</span>, json_path.stem + <span class="string">&quot;.jpg&quot;</span>)</span><br><span class="line">    img_path = img_dir / img_name</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 如果直接路径不存在，尝试查找同名不同扩展名的图片</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> img_path.exists():</span><br><span class="line">        <span class="comment"># 查找所有可能的图片格式</span></span><br><span class="line">        <span class="keyword">for</span> ext <span class="keyword">in</span> IMG_EXTENSIONS:</span><br><span class="line">            alt_path = img_dir / <span class="string">f&quot;<span class="subst">&#123;img_path.stem&#125;</span><span class="subst">&#123;ext&#125;</span>&quot;</span></span><br><span class="line">            <span class="keyword">if</span> alt_path.exists():</span><br><span class="line">                img_path = alt_path</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> img_path.exists():</span><br><span class="line">        print(<span class="string">f&quot;⚠️ 图片不存在: <span class="subst">&#123;img_path&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 转换标注</span></span><br><span class="line">    lines = []</span><br><span class="line">    <span class="keyword">for</span> shape <span class="keyword">in</span> data.get(<span class="string">&quot;shapes&quot;</span>, []):</span><br><span class="line">        <span class="keyword">if</span> shape[<span class="string">&quot;shape_type&quot;</span>] == <span class="string">&quot;rectangle&quot;</span>:</span><br><span class="line">            label = shape[<span class="string">&quot;label&quot;</span>]</span><br><span class="line">            <span class="keyword">if</span> label <span class="keyword">not</span> <span class="keyword">in</span> name2id:</span><br><span class="line">                print(<span class="string">f&quot;⚠️ 未知类别: <span class="subst">&#123;label&#125;</span>&quot;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            class_id = name2id[label]</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 坐标转换 - 支持2点和4点格式</span></span><br><span class="line">            points = shape[<span class="string">&quot;points&quot;</span>]</span><br><span class="line">            img_w, img_h = data[<span class="string">&quot;imageWidth&quot;</span>], data[<span class="string">&quot;imageHeight&quot;</span>]</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(points) == <span class="number">2</span>:</span><br><span class="line">                <span class="comment"># 标准2点格式：左上角和右下角</span></span><br><span class="line">                x1, y1 = points[<span class="number">0</span>]</span><br><span class="line">                x2, y2 = points[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">len</span>(points) == <span class="number">4</span>:</span><br><span class="line">                <span class="comment"># X-AnyLabeling的4点格式：4个角点</span></span><br><span class="line">                <span class="comment"># 提取所有x和y坐标</span></span><br><span class="line">                xs = [p[<span class="number">0</span>] <span class="keyword">for</span> p <span class="keyword">in</span> points]</span><br><span class="line">                ys = [p[<span class="number">1</span>] <span class="keyword">for</span> p <span class="keyword">in</span> points]</span><br><span class="line">                <span class="comment"># 找到边界框</span></span><br><span class="line">                x1, x2 = <span class="built_in">min</span>(xs), <span class="built_in">max</span>(xs)</span><br><span class="line">                y1, y2 = <span class="built_in">min</span>(ys), <span class="built_in">max</span>(ys)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">f&quot;⚠️ 坐标点数量异常: <span class="subst">&#123;<span class="built_in">len</span>(points)&#125;</span> (应该是2或4)&quot;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 计算YOLO格式</span></span><br><span class="line">            x_center = ((x1 + x2) / <span class="number">2</span>) / img_w</span><br><span class="line">            y_center = ((y1 + y2) / <span class="number">2</span>) / img_h</span><br><span class="line">            width = <span class="built_in">abs</span>(x2 - x1) / img_w</span><br><span class="line">            height = <span class="built_in">abs</span>(y2 - y1) / img_h</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 验证标注有效性</span></span><br><span class="line">            <span class="keyword">if</span> width == <span class="number">0</span> <span class="keyword">or</span> height == <span class="number">0</span>:</span><br><span class="line">                print(<span class="string">f&quot;⚠️ 跳过无效标注 (宽度或高度为0): <span class="subst">&#123;label&#125;</span>&quot;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            </span><br><span class="line">            lines.append(<span class="string">f&quot;<span class="subst">&#123;class_id&#125;</span> <span class="subst">&#123;x_center:<span class="number">.6</span>f&#125;</span> <span class="subst">&#123;y_center:<span class="number">.6</span>f&#125;</span> <span class="subst">&#123;width:<span class="number">.6</span>f&#125;</span> <span class="subst">&#123;height:<span class="number">.6</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 写入txt</span></span><br><span class="line">    txt_path = label_dir / <span class="string">f&quot;<span class="subst">&#123;img_path.stem&#125;</span>.txt&quot;</span></span><br><span class="line">    txt_path.parent.mkdir(parents=<span class="literal">True</span>, exist_ok=<span class="literal">True</span>)</span><br><span class="line">    txt_path.write_text(<span class="string">&quot;\n&quot;</span>.join(lines))</span><br><span class="line">    <span class="keyword">return</span> img_path, txt_path</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>(<span class="params">json_dir, img_dir, output_dir, class_file, split=<span class="number">0.2</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;主流程：转换+划分+生成data.yaml&quot;&quot;&quot;</span></span><br><span class="line">    print(<span class="string">&quot;=&quot;</span> * <span class="number">60</span>)</span><br><span class="line">    print(<span class="string">&quot;开始转换X-AnyLabeling标注&quot;</span>)</span><br><span class="line">    print(<span class="string">&quot;=&quot;</span> * <span class="number">60</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 读取类别</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(class_file, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        lines = [line.strip() <span class="keyword">for</span> line <span class="keyword">in</span> f <span class="keyword">if</span> line.strip()]</span><br><span class="line">    </span><br><span class="line">    id2name = &#123;i: name <span class="keyword">for</span> i, name <span class="keyword">in</span> <span class="built_in">enumerate</span>(lines)&#125;</span><br><span class="line">    name2id = &#123;name: i <span class="keyword">for</span> i, name <span class="keyword">in</span> <span class="built_in">enumerate</span>(lines)&#125;</span><br><span class="line">    print(<span class="string">f&quot;✅ 加载类别: <span class="subst">&#123;name2id&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 检查输入目录</span></span><br><span class="line">    json_path = Path(json_dir)</span><br><span class="line">    img_path = Path(img_dir)</span><br><span class="line">    print(<span class="string">f&quot;\nJSON目录: <span class="subst">&#123;json_path&#125;</span> | 存在: <span class="subst">&#123;json_path.exists()&#125;</span>&quot;</span>)</span><br><span class="line">    print(<span class="string">f&quot;图片目录: <span class="subst">&#123;img_path&#125;</span> | 存在: <span class="subst">&#123;img_path.exists()&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    json_files = <span class="built_in">list</span>(json_path.glob(<span class="string">&quot;*.json&quot;</span>))</span><br><span class="line">    print(<span class="string">f&quot;\n找到JSON文件数: <span class="subst">&#123;<span class="built_in">len</span>(json_files)&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(json_files) == <span class="number">0</span>:</span><br><span class="line">        print(<span class="string">&quot;❌ 错误：未找到任何JSON文件！&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 检查图片文件（支持多种格式）</span></span><br><span class="line">    img_files = [f <span class="keyword">for</span> f <span class="keyword">in</span> img_path.glob(<span class="string">&quot;*.*&quot;</span>) <span class="keyword">if</span> f.suffix.lower() <span class="keyword">in</span> IMG_EXTENSIONS]</span><br><span class="line">    print(<span class="string">f&quot;找到图片文件数: <span class="subst">&#123;<span class="built_in">len</span>(img_files)&#125;</span> | 格式: <span class="subst">&#123;<span class="built_in">set</span>(f.suffix <span class="keyword">for</span> f <span class="keyword">in</span> img_files)&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(img_files) == <span class="number">0</span>:</span><br><span class="line">        print(<span class="string">&quot;❌ 错误：未找到任何图片文件！&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 创建目录</span></span><br><span class="line">    output = Path(output_dir)</span><br><span class="line">    <span class="keyword">for</span> d <span class="keyword">in</span> [<span class="string">&quot;images/train&quot;</span>, <span class="string">&quot;images/val&quot;</span>, <span class="string">&quot;labels/train&quot;</span>, <span class="string">&quot;labels/val&quot;</span>]:</span><br><span class="line">        (output / d).mkdir(parents=<span class="literal">True</span>, exist_ok=<span class="literal">True</span>)</span><br><span class="line">    print(<span class="string">f&quot;\n✅ 输出目录创建完成: <span class="subst">&#123;output&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 转换所有JSON到临时目录</span></span><br><span class="line">    temp_label_dir = output / <span class="string">&quot;labels_temp&quot;</span></span><br><span class="line">    temp_label_dir.mkdir(exist_ok=<span class="literal">True</span>)</span><br><span class="line">    img_paths, label_paths = [], []</span><br><span class="line">    <span class="keyword">for</span> json_file <span class="keyword">in</span> json_files:</span><br><span class="line">        result = convert_single_json(json_file, img_path, temp_label_dir, name2id)</span><br><span class="line">        <span class="keyword">if</span> result:</span><br><span class="line">            img_paths.append(result[<span class="number">0</span>])</span><br><span class="line">            label_paths.append(result[<span class="number">1</span>])</span><br><span class="line">    </span><br><span class="line">    print(<span class="string">f&quot;\n转换成功总数: <span class="subst">&#123;<span class="built_in">len</span>(img_paths)&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(img_paths) == <span class="number">0</span>:</span><br><span class="line">        print(<span class="string">&quot;❌ 致命错误：未成功转换任何数据！&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 拷贝图片到临时目录（保留原始扩展名）</span></span><br><span class="line">    temp_img_dir = output / <span class="string">&quot;images_temp&quot;</span></span><br><span class="line">    temp_img_dir.mkdir(exist_ok=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">for</span> img <span class="keyword">in</span> img_paths:</span><br><span class="line">        shutil.copy(img, temp_img_dir)</span><br><span class="line">    print(<span class="string">f&quot;✅ 图片已拷贝到临时目录: <span class="subst">&#123;<span class="built_in">len</span>(<span class="built_in">list</span>(temp_img_dir.glob(<span class="string">&#x27;*&#x27;</span>)))&#125;</span>张&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 划分train/val</span></span><br><span class="line">    all_imgs = [f <span class="keyword">for</span> f <span class="keyword">in</span> temp_img_dir.glob(<span class="string">&quot;*.*&quot;</span>) <span class="keyword">if</span> f.suffix.lower() <span class="keyword">in</span> IMG_EXTENSIONS]</span><br><span class="line">    print(<span class="string">f&quot;待划分图片数: <span class="subst">&#123;<span class="built_in">len</span>(all_imgs)&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(all_imgs) &lt; <span class="number">2</span>:</span><br><span class="line">        print(<span class="string">&quot;❌ 错误：至少需要2张图片才能划分train/val&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    train_imgs, val_imgs = train_test_split(all_imgs, test_size=split, random_state=<span class="number">42</span>)</span><br><span class="line">    print(<span class="string">f&quot;划分结果: 训练集<span class="subst">&#123;<span class="built_in">len</span>(train_imgs)&#125;</span>张, 验证集<span class="subst">&#123;<span class="built_in">len</span>(val_imgs)&#125;</span>张&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 移动文件到最终位置（同时移动对应的标签文件）</span></span><br><span class="line">    <span class="keyword">for</span> img <span class="keyword">in</span> train_imgs:</span><br><span class="line">        shutil.move(<span class="built_in">str</span>(img), output / <span class="string">&quot;images/train&quot;</span>)</span><br><span class="line">        <span class="comment"># 移动对应的标签文件</span></span><br><span class="line">        label_file = temp_label_dir / <span class="string">f&quot;<span class="subst">&#123;img.stem&#125;</span>.txt&quot;</span></span><br><span class="line">        <span class="keyword">if</span> label_file.exists():</span><br><span class="line">            shutil.move(<span class="built_in">str</span>(label_file), output / <span class="string">&quot;labels/train&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> img <span class="keyword">in</span> val_imgs:</span><br><span class="line">        shutil.move(<span class="built_in">str</span>(img), output / <span class="string">&quot;images/val&quot;</span>)</span><br><span class="line">        <span class="comment"># 移动对应的标签文件</span></span><br><span class="line">        label_file = temp_label_dir / <span class="string">f&quot;<span class="subst">&#123;img.stem&#125;</span>.txt&quot;</span></span><br><span class="line">        <span class="keyword">if</span> label_file.exists():</span><br><span class="line">            shutil.move(<span class="built_in">str</span>(label_file), output / <span class="string">&quot;labels/val&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 清理临时目录</span></span><br><span class="line">    temp_img_dir.rmdir()</span><br><span class="line">    <span class="keyword">if</span> temp_label_dir.exists():</span><br><span class="line">        <span class="comment"># 检查是否还有剩余文件</span></span><br><span class="line">        remaining = <span class="built_in">list</span>(temp_label_dir.glob(<span class="string">&quot;*&quot;</span>))</span><br><span class="line">        <span class="keyword">if</span> remaining:</span><br><span class="line">            print(<span class="string">f&quot;⚠️ 警告：临时标签目录中还有<span class="subst">&#123;<span class="built_in">len</span>(remaining)&#125;</span>个文件未处理&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            temp_label_dir.rmdir()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 生成data.yaml（使用列表格式避免ASCII码问题）</span></span><br><span class="line">    yaml_content = &#123;</span><br><span class="line">        <span class="string">&quot;path&quot;</span>: <span class="built_in">str</span>(output.absolute()),</span><br><span class="line">        <span class="string">&quot;train&quot;</span>: <span class="string">&quot;images/train&quot;</span>,</span><br><span class="line">        <span class="string">&quot;val&quot;</span>: <span class="string">&quot;images/val&quot;</span>,</span><br><span class="line">        <span class="string">&quot;nc&quot;</span>: <span class="built_in">len</span>(id2name),</span><br><span class="line">        <span class="string">&quot;names&quot;</span>: [id2name[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(id2name))]</span><br><span class="line">    &#125;</span><br><span class="line">    (output / <span class="string">&quot;data.yaml&quot;</span>).write_text(yaml.dump(yaml_content, sort_keys=<span class="literal">False</span>, allow_unicode=<span class="literal">True</span>), encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    print(<span class="string">&quot;\n&quot;</span> + <span class="string">&quot;=&quot;</span> * <span class="number">60</span>)</span><br><span class="line">    print(<span class="string">&quot;✅ 转换完成！&quot;</span>)</span><br><span class="line">    print(<span class="string">f&quot;训练集: <span class="subst">&#123;<span class="built_in">len</span>(train_imgs)&#125;</span>张&quot;</span>)</span><br><span class="line">    print(<span class="string">f&quot;验证集: <span class="subst">&#123;<span class="built_in">len</span>(val_imgs)&#125;</span>张&quot;</span>)</span><br><span class="line">    print(<span class="string">f&quot;配置文件: <span class="subst">&#123;output / <span class="string">&#x27;data.yaml&#x27;</span>&#125;</span>&quot;</span>)</span><br><span class="line">    print(<span class="string">&quot;=&quot;</span> * <span class="number">60</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用示例（请替换成你的真实路径）</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main(</span><br><span class="line">        json_dir=<span class="string">&quot;D:/Develop/yolo/tran_data&quot;</span>,</span><br><span class="line">        img_dir=<span class="string">&quot;D:/Develop/yolo/tran_data&quot;</span>,</span><br><span class="line">        output_dir=<span class="string">&quot;D:/Develop/yolo/tran_data/dataset_complete&quot;</span>, <span class="comment">#转换输出路径</span></span><br><span class="line">        class_file=<span class="string">&quot;D:/Develop/yolo/tran_data/classes.txt&quot;</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<p>执行完会生成daya.yml 文件和images lables文件夹</p>
+<h3><span id="使用ultralytics训练yolov11模型">使用Ultralytics训练yolov11模型</span></h3><p>首先需要前往官网下载yolo11n或者其它版本的模型，也可以<strong>直接在X-AnyLabeling</strong>中下载，具体操作为点击左侧的’AI’按钮，再点击选择模型，点击yolov11模型会自动开始下载。</p>
+<p>运行以下代码开始训练模型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> ultralytics <span class="keyword">import</span> YOLO</span><br><span class="line"></span><br><span class="line">model = YOLO(<span class="string">&#x27;yolo11n.pt&#x27;</span>)</span><br><span class="line"></span><br><span class="line">model.train(</span><br><span class="line">    data=<span class="string">&#x27;D:\\Develop\\yolo\\tran_data\\dataset_complete\\data.yaml&#x27;</span>,</span><br><span class="line">    epochs=<span class="number">300</span>,  <span class="comment"># 增加epochs</span></span><br><span class="line">    patience=<span class="number">50</span>,  <span class="comment"># 增加耐心值</span></span><br><span class="line">    batch=<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>训练完成后会在控制台打印训练完成后的新模型路径，将会生成best.pt和last.pt</p>
+<h3><span id="测试新训练的模型">测试新训练的模型</span></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ultralytics <span class="keyword">import</span> YOLO</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model = YOLO(<span class="string">r&quot;D:\\Develop\\detect\\train3\weights\\best.pt&quot;</span>)</span><br><span class="line"><span class="comment"># Run inference on an image</span></span><br><span class="line">results = model(<span class="string">r&quot;D://test.png&quot;</span>)  <span class="comment"># Replace with your image path</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Process results list</span></span><br><span class="line"><span class="keyword">for</span> result <span class="keyword">in</span> results:</span><br><span class="line">    boxes = result.boxes  <span class="comment"># Boxes object for bbox outputs</span></span><br><span class="line">    masks = result.masks  <span class="comment"># Masks object for segmentation masks outputs</span></span><br><span class="line">    keypoints = result.keypoints  <span class="comment"># Keypoints object for pose outputs</span></span><br><span class="line">    probs = result.probs  <span class="comment"># Probs object for classification outputs</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Show the results</span></span><br><span class="line">    result.show()  <span class="comment"># display to screen</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Print detected classes</span></span><br><span class="line">    <span class="keyword">for</span> box <span class="keyword">in</span> boxes:</span><br><span class="line">        class_id = <span class="built_in">int</span>(box.cls[<span class="number">0</span>])</span><br><span class="line">        class_name = result.names[class_id]</span><br><span class="line">        conf = <span class="built_in">float</span>(box.conf[<span class="number">0</span>])</span><br><span class="line">        print(<span class="string">f&quot;Detected: <span class="subst">&#123;class_name&#125;</span> with confidence: <span class="subst">&#123;conf:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Save results to disk</span></span><br><span class="line">    result.save(filename=<span class="string">&#x27;result.jpg&#x27;</span>)  <span class="comment"># save to disk</span></span><br></pre></td></tr></table></figure>
+
+<p>运行以上代码来测试是否能正常识别训练的物体。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AI</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">YOLO</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Ultralytics</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">X-AnyLabeling</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/AI//" class="article-tag-list-link color3">AI</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/posts/2a81f883.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-使用nginx-flask调用SSE流式输出接口报net-ERR-HTTP2-PROTOCOL-ERROR" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1839,132 +1968,6 @@
 
 
   
-    <article id="post-ImplementingAICustomerServiceBasedOnLangchain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/posts/8f0289a1.html" target="_blank">Implementing AI customer service based on Langchain</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/posts/8f0289a1.html" class="archive-article-date">
-        <time datetime="2023-06-14T12:04:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="Based"><a href="#Based" class="headerlink" title="Based"></a>Based</h1><ul>
-<li><p>Langchain</p>
-</li>
-<li><p>llama_index &gt;=0.6.5</p>
-</li>
-<li><p>GPT-3.5</p>
-</li>
-<li><p>websockets</p>
-</li>
-<li><p>python &gt;=3.10</p>
-</li>
-</ul>
-<p><strong>dependence</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pip install llama-index</span><br><span class="line"></span><br><span class="line">pip install openai </span><br><span class="line"></span><br><span class="line">pip install langchain</span><br><span class="line"></span><br><span class="line">pip install websockets</span><br><span class="line"></span><br><span class="line">pip install pandas</span><br><span class="line"></span><br><span class="line">pip install llama-hub</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h1 id="What-use"><a href="#What-use" class="headerlink" title="What use"></a>What use</h1><p>Supporting private knowledge base AI question-answering chatbot, capable of both knowledge-based Q&amp;A and casual conversation.</p>
-    
-    <a class="article-more-a" href="/posts/8f0289a1.html#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ChatGPT</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">AI智能客服</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/AI//" class="article-tag-list-link color3">AI</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/posts/8f0289a1.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -2326,6 +2329,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">sse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">YOLO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ultralytics</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">X-AnyLabeling</a>
               </li>
             
             <div class="clearfix"></div>
